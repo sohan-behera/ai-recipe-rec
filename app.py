@@ -255,44 +255,52 @@ st.markdown(
         margin-bottom: 10px;
     }
 
+    /* ================================================================
+       YOUTUBE LINK CARD
+       ================================================================ */
+
     .youtube-card {
-        padding: 10px 14px;
-
+        padding: 12px 15px;
         border: 1px solid #e5e7eb;
-
         border-radius: 10px;
-
-        margin-bottom: 8px;
-
+        margin-bottom: 10px;
         background: white;
     }
 
     .youtube-link {
         text-decoration: none;
-
         font-weight: 600;
-
         color: #dc2626;
+        font-size: 15px;
     }
 
+    .youtube-link:hover {
+        text-decoration: underline;
+        color: #b91c1c;
+    }
+
+    /* ================================================================
+       WEB LINK CARD
+       ================================================================ */
+
     .web-card {
-        padding: 10px 14px;
-
+        padding: 12px 15px;
         border: 1px solid #e5e7eb;
-
         border-radius: 10px;
-
-        margin-bottom: 8px;
-
+        margin-bottom: 10px;
         background: white;
     }
 
     .web-link {
         text-decoration: none;
-
         font-weight: 600;
-
         color: #2563eb;
+        font-size: 15px;
+    }
+
+    .web-link:hover {
+        text-decoration: underline;
+        color: #1d4ed8;
     }
 
     </style>
@@ -660,11 +668,17 @@ if page == "🏠 Home":
 
                                 if url:
 
+                                    # Clickable YouTube title
                                     st.markdown(
                                         f"""
                                         <div class="youtube-card">
 
-                                            ▶️
+                                            <span style="
+                                                font-size:18px;
+                                                margin-right:6px;
+                                            ">
+                                                ▶️
+                                            </span>
 
                                             <a
                                                 href="{url}"
@@ -673,6 +687,15 @@ if page == "🏠 Home":
                                             >
                                                 {title}
                                             </a>
+
+                                            <div style="
+                                                font-size:12px;
+                                                color:#777;
+                                                margin-top:5px;
+                                                margin-left:29px;
+                                            ">
+                                                Watch on YouTube ↗
+                                            </div>
 
                                         </div>
                                         """,
@@ -844,7 +867,6 @@ elif page == "🧭 Discover":
         key="discover_ingredients",
     )
 
-    # Convert input to list
     if discover_ingredients.strip():
 
         user_ings = _parse_user_ingredients(
@@ -892,7 +914,6 @@ elif page == "🧭 Discover":
         )
 
 
-    # Highest match first
     scored_recipes.sort(
         key=lambda x: x[0],
         reverse=True,
@@ -1238,7 +1259,12 @@ elif page == "🧭 Discover":
                                             f"""
                                             <div class="youtube-card">
 
-                                                ▶️
+                                                <span style="
+                                                    font-size:18px;
+                                                    margin-right:6px;
+                                                ">
+                                                    ▶️
+                                                </span>
 
                                                 <a
                                                     href="{url}"
@@ -1247,6 +1273,15 @@ elif page == "🧭 Discover":
                                                 >
                                                     {title}
                                                 </a>
+
+                                                <div style="
+                                                    font-size:12px;
+                                                    color:#777;
+                                                    margin-top:5px;
+                                                    margin-left:29px;
+                                                ">
+                                                    Watch on YouTube ↗
+                                                </div>
 
                                             </div>
                                             """,
