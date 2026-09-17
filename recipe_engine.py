@@ -164,6 +164,7 @@ Return ONLY valid JSON (no markdown, no commentary) matching this schema:
 """
 
 
+@st.cache_data(show_spinner=False, ttl=3600)
 def _generate_recipe_gemini(ingredients: str, cuisine: str, time_minutes: int, servings: int, diet: str) -> dict:
     """Call Gemini to generate recipe suggestions. Returns a parsed dict."""
     prompt = SYSTEM_PROMPT.format(
