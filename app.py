@@ -146,7 +146,7 @@ if page == "🏠 Home":
                 ["None", "Vegetarian", "Vegan", "Gluten-free"],
             )
 
-        use_web_search = st.checkbox("Also search the web for extra recipe ideas (Tavily)", value=True)
+        use_web_search = st.checkbox("Also search the web for extra recipe ideas (Tavily)", value=False)
         submitted = st.form_submit_button("Get Recipe")
     st.markdown('</div>', unsafe_allow_html=True)
 
@@ -191,18 +191,20 @@ if page == "🏠 Home":
                         for i, step in enumerate(recipe.get("steps", []), start=1):
                             st.markdown(f"{i}. {step}")
 
-                        yt_videos = search_youtube_videos(recipe.get("recipe_name", ""))
-                        if yt_videos:
-                            st.markdown("**📺 Watch on YouTube:**")
-                            for v in yt_videos:
-                                st.markdown(
-                                    f'<div style="padding:8px 12px;border:1px solid #e5e7eb;'
-                                    f'border-radius:8px;margin-bottom:6px;">'
-                                    f'▶️ <a href="{v["url"]}" target="_blank" '
-                                    f'style="text-decoration:none;font-weight:600;color:#dc2626;">'
-                                    f'{v["title"]}</a></div>',
-                                    unsafe_allow_html=True,
-                                )
+                        if st.button("📺 Find YouTube tutorials", key=f"yt_btn_{recipe.get('recipe_name')}"):
+                            yt_videos = search_youtube_videos(recipe.get("recipe_name", ""))
+                            if yt_videos:
+                                for v in yt_videos:
+                                    st.markdown(
+                                        f'<div style="padding:8px 12px;border:1px solid #e5e7eb;'
+                                        f'border-radius:8px;margin-bottom:6px;">'
+                                        f'▶️ <a href="{v["url"]}" target="_blank" '
+                                        f'style="text-decoration:none;font-weight:600;color:#dc2626;">'
+                                        f'{v["title"]}</a></div>',
+                                        unsafe_allow_html=True,
+                                    )
+                            else:
+                                st.write("No videos found.")
                         st.markdown('</div>', unsafe_allow_html=True)
 
                     shopping_list = build_shopping_list(recipes)
@@ -345,18 +347,20 @@ elif page == "🧭 Discover":
                         if tips:
                             st.markdown(f"**Tip:** {tips}")
 
-                        yt_videos = search_youtube_videos(recipe.get("name", ""))
-                        if yt_videos:
-                            st.markdown("**📺 Watch on YouTube:**")
-                            for v in yt_videos:
-                                st.markdown(
-                                    f'<div style="padding:8px 12px;border:1px solid #e5e7eb;'
-                                    f'border-radius:8px;margin-bottom:6px;">'
-                                    f'▶️ <a href="{v["url"]}" target="_blank" '
-                                    f'style="text-decoration:none;font-weight:600;color:#dc2626;">'
-                                    f'{v["title"]}</a></div>',
-                                    unsafe_allow_html=True,
-                                )
+                        if st.button("📺 Find YouTube tutorials", key=f"yt_btn_{recipe['id']}"):
+                            yt_videos = search_youtube_videos(recipe.get("name", ""))
+                            if yt_videos:
+                                for v in yt_videos:
+                                    st.markdown(
+                                        f'<div style="padding:8px 12px;border:1px solid #e5e7eb;'
+                                        f'border-radius:8px;margin-bottom:6px;">'
+                                        f'▶️ <a href="{v["url"]}" target="_blank" '
+                                        f'style="text-decoration:none;font-weight:600;color:#dc2626;">'
+                                        f'{v["title"]}</a></div>',
+                                        unsafe_allow_html=True,
+                                    )
+                            else:
+                                st.write("No videos found.")
 
                 st.markdown('</div>', unsafe_allow_html=True)
 
