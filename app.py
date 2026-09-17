@@ -1048,26 +1048,6 @@ elif page == "🧭 Discover":
 
 
                 st.markdown(
-                    f"""
-                    <div style="padding:14px 16px 4px 16px;">
-
-                        <span class="sb-pill-green"
-                              style="padding:3px 10px;font-size:12px;">
-                            ⭐ {int(score * 100)}% match
-                        </span>
-
-                        <span class="sb-pill-gray"
-                              style="padding:3px 10px;font-size:12px;">
-                            ⏱ {recipe.get("cooking_time", "?")} min
-                        </span>
-
-                    </div>
-                    """,
-                    unsafe_allow_html=True,
-                )
-
-
-                st.markdown(
                     f"**{recipe.get('name', 'Recipe')}**"
                 )
 
