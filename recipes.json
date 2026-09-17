@@ -1,0 +1,1026 @@
+[
+  {
+    "id": "masala-egg-rice",
+    "name": "Masala Egg Rice",
+    "cuisine": "Indian",
+    "category": "Rice & Bowls",
+    "cooking_time": 20,
+    "servings": 2,
+    "difficulty": "Easy",
+    "dietary_tags": ["Egg", "High Protein", "Quick Meals"],
+    "description": "A fragrant, comforting one-pan rice dish tossed with scrambled eggs, sweet caramelized onions, juicy tomatoes, and warm spices.",
+    "ingredients": ["rice", "onion", "tomato", "egg", "green chilli", "turmeric", "oil", "salt"],
+    "ingredient_details": [
+      "2 cups cooked rice (day-old rice works best)",
+      "2 large eggs, lightly beaten",
+      "1 medium onion, finely chopped",
+      "1 ripe tomato, diced",
+      "1 green chilli, sliced",
+      "1/2 tsp turmeric powder",
+      "1/2 tsp garam masala or curry powder",
+      "1 tbsp cooking oil",
+      "Salt to taste"
+    ],
+    "steps": [
+      "Heat oil in a wide pan or wok over medium heat.",
+      "Add finely chopped onions and green chilli; sauté for 3-4 minutes until onions turn translucent and slightly golden.",
+      "Add diced tomatoes, turmeric powder, and salt. Cook for 2-3 minutes until tomatoes soften into a juicy masala.",
+      "Push the veggies to one side of the pan and pour in the beaten eggs. Scramble gently for 1-2 minutes until soft curds form.",
+      "Add the cooked rice and garam masala. Toss everything gently on high heat for 2 minutes until evenly coated and steaming hot.",
+      "Garnish with fresh coriander if desired and serve hot with yogurt or ketchup."
+    ],
+    "tips": [
+      "Using chilled leftover rice prevents the grains from breaking while tossing.",
+      "To make it less spicy, discard the seeds from the green chilli or substitute with a pinch of mild paprika."
+    ],
+    "nutrition_estimate": {
+      "calories": "380 kcal",
+      "protein": "14g",
+      "carbohydrates": "52g",
+      "fat": "12g"
+    },
+    "image_url": "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=600&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "vegetable-fried-rice",
+    "name": "Vegetable Fried Rice",
+    "cuisine": "Chinese",
+    "category": "Rice & Bowls",
+    "cooking_time": 15,
+    "servings": 2,
+    "difficulty": "Easy",
+    "dietary_tags": ["Vegetarian", "Vegan", "Quick Meals"],
+    "description": "Fast wok-tossed street-style fried rice loaded with crunchy veggies, aromatic garlic, and savory soy sauce.",
+    "ingredients": ["rice", "onion", "carrot", "capsicum", "garlic", "soy sauce", "oil", "salt"],
+    "ingredient_details": [
+      "2 cups cooked chilled rice",
+      "1/2 cup finely chopped carrots",
+      "1/2 cup finely chopped capsicum / bell pepper",
+      "1/2 cup finely chopped onion",
+      "3 cloves garlic, minced",
+      "1.5 tbsp soy sauce",
+      "1/2 tsp black pepper",
+      "1.5 tbsp vegetable oil",
+      "Salt to taste"
+    ],
+    "steps": [
+      "Heat oil in a wok or large frying pan over high heat until smoking.",
+      "Add minced garlic and onions; stir-fry rapidly for 1 minute until fragrant.",
+      "Toss in carrots and capsicum; stir-fry on high flame for 2 minutes to keep them crisp.",
+      "Add the cold cooked rice, breaking up any clumps with your spatula.",
+      "Drizzle soy sauce, black pepper, and a pinch of salt around the edges of the pan.",
+      "Toss continuously on high heat for 2 minutes until well combined, smoky, and heated through."
+    ],
+    "tips": [
+      "High heat is the secret to authentic restaurant-style fried rice flavor.",
+      "Add a splash of vinegar or chili oil at the end for extra zing."
+    ],
+    "nutrition_estimate": {
+      "calories": "320 kcal",
+      "protein": "6g",
+      "carbohydrates": "58g",
+      "fat": "8g"
+    },
+    "image_url": "https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=600&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "quick-tomato-pasta",
+    "name": "Quick Garlic Tomato Pasta",
+    "cuisine": "Italian",
+    "category": "Pasta",
+    "cooking_time": 18,
+    "servings": 2,
+    "difficulty": "Easy",
+    "dietary_tags": ["Vegetarian", "Low Oil"],
+    "description": "Al dente penne smothered in a rich, garlicky crushed tomato sauce finished with dried oregano and cheese.",
+    "ingredients": ["pasta", "tomato", "garlic", "onion", "olive oil", "oregano", "cheese", "salt"],
+    "ingredient_details": [
+      "200g penne or spaghetti",
+      "3 ripe tomatoes, pureed or finely diced",
+      "4 cloves garlic, thinly sliced",
+      "1/2 onion, finely minced",
+      "1 tbsp olive oil",
+      "1 tsp dried oregano or Italian seasoning",
+      "2 tbsp grated cheese",
+      "Salt and red chili flakes to taste"
+    ],
+    "steps": [
+      "Boil salted water in a large pot. Cook pasta for 9-10 minutes until al dente; reserve 1/4 cup pasta water and drain.",
+      "In a separate pan, warm olive oil over medium-low heat. Add garlic slices and cook gently for 1 minute until golden.",
+      "Add onions and sauté until soft, then stir in the tomatoes, oregano, salt, and chili flakes.",
+      "Simmer the sauce for 6-8 minutes until thickened and glossy.",
+      "Add drained pasta and reserved pasta water to the pan. Toss vigorously for 1 minute to coat pasta evenly.",
+      "Top with grated cheese and serve immediately."
+    ],
+    "tips": [
+      "Always salt your pasta boiling water generously—it seasons the pasta from the inside out.",
+      "The reserved starchy pasta water emulsifies the sauce into a silky restaurant finish."
+    ],
+    "nutrition_estimate": {
+      "calories": "390 kcal",
+      "protein": "11g",
+      "carbohydrates": "66g",
+      "fat": "9g"
+    },
+    "image_url": "https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=600&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "classic-veg-grilled-sandwich",
+    "name": "Classic Bombay Veg Grilled Sandwich",
+    "cuisine": "Indian",
+    "category": "Snacks",
+    "cooking_time": 12,
+    "servings": 2,
+    "difficulty": "Easy",
+    "dietary_tags": ["Vegetarian", "Quick Meals"],
+    "description": "Crispy golden toasted bread stuffed with spiced potato, tomato, onion, cucumber slices, and melted cheese.",
+    "ingredients": ["bread", "potato", "onion", "tomato", "cucumber", "cheese", "butter", "chaat masala"],
+    "ingredient_details": [
+      "4 slices of bread (white, brown, or multigrain)",
+      "1 boiled potato, thinly sliced",
+      "1 medium onion, sliced into rings",
+      "1 ripe tomato, thinly sliced",
+      "1/2 cucumber, sliced",
+      "2 slices or 3 tbsp grated cheese",
+      "1 tbsp butter",
+      "1/2 tsp chaat masala"
+    ],
+    "steps": [
+      "Lay out bread slices and lightly spread butter (and green chutney if you have it).",
+      "Layer slices of boiled potato, cucumber, tomato, and onion on two bread slices.",
+      "Sprinkle chaat masala over the vegetables and place cheese on top.",
+      "Cover with the remaining bread slices and butter the outer sides.",
+      "Toast in a sandwich maker, grill pan, or regular tawa on medium heat for 3-4 minutes per side until golden brown and crispy.",
+      "Slice diagonally and enjoy with tomato ketchup."
+    ],
+    "tips": [
+      "Toasting on low-medium flame ensures the cheese melts completely before the bread burns.",
+      "Boil potatoes in advance and store them in the fridge for instant 5-minute sandwiches."
+    ],
+    "nutrition_estimate": {
+      "calories": "310 kcal",
+      "protein": "9g",
+      "carbohydrates": "44g",
+      "fat": "11g"
+    },
+    "image_url": "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=600&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "spicy-paneer-tikka-wrap",
+    "name": "Spicy Paneer Tikka Wrap",
+    "cuisine": "Indian",
+    "category": "Snacks",
+    "cooking_time": 20,
+    "servings": 2,
+    "difficulty": "Easy",
+    "dietary_tags": ["Vegetarian", "High Protein"],
+    "description": "Soft flatbread or tortilla rolled around pan-seared paneer cubes marinated in yogurt and spices with crunchy onions.",
+    "ingredients": ["paneer", "onion", "capsicum", "curd", "bread", "oil", "garam masala", "chilli powder"],
+    "ingredient_details": [
+      "150g paneer, cut into bite-sized cubes",
+      "2 rotis, parathas, or flour tortillas",
+      "1/2 onion, thinly sliced",
+      "1/2 capsicum / bell pepper, julienned",
+      "2 tbsp curd / plain yogurt",
+      "1/2 tsp red chilli powder",
+      "1/2 tsp garam masala",
+      "1 tbsp cooking oil",
+      "Salt to taste"
+    ],
+    "steps": [
+      "In a bowl, mix curd, red chilli powder, garam masala, salt, and 1 tsp oil.",
+      "Coat paneer cubes in this spiced marinade and rest for 5 minutes.",
+      "Heat remaining oil in a skillet. Sear the paneer cubes for 4-5 minutes until golden on all sides; remove and set aside.",
+      "In the same pan, toss sliced onions and capsicum for 1 minute over high heat to keep them crunchy.",
+      "Warm the rotis or wraps on the tawa.",
+      "Assemble by placing spiced paneer cubes and crunchy veggies down the center of each wrap, roll tightly, and serve."
+    ],
+    "tips": [
+      "Do not overcook paneer or it will turn rubbery—3 to 5 minutes is plenty!",
+      "A squeeze of fresh lemon juice before rolling adds an irresistible street-food tang."
+    ],
+    "nutrition_estimate": {
+      "calories": "410 kcal",
+      "protein": "18g",
+      "carbohydrates": "36g",
+      "fat": "22g"
+    },
+    "image_url": "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?w=600&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "egg-hakka-noodles",
+    "name": "Street-Style Egg Hakka Noodles",
+    "cuisine": "Chinese",
+    "category": "Quick Meals",
+    "cooking_time": 18,
+    "servings": 2,
+    "difficulty": "Easy",
+    "dietary_tags": ["Egg", "High Protein", "Quick Meals"],
+    "description": "Tossed noodles with shredded cabbage, carrots, spring onions, and fluffy scrambled egg with soy and vinegar.",
+    "ingredients": ["noodles", "egg", "onion", "carrot", "garlic", "soy sauce", "oil", "salt"],
+    "ingredient_details": [
+      "150g Hakka or instant egg noodles",
+      "2 large eggs, lightly beaten",
+      "1/2 onion, sliced",
+      "1/2 cup shredded carrot or cabbage",
+      "2 cloves garlic, minced",
+      "1.5 tbsp soy sauce",
+      "1 tsp vinegar",
+      "1.5 tbsp cooking oil",
+      "Salt and pepper to taste"
+    ],
+    "steps": [
+      "Boil noodles according to package instructions (about 4 minutes). Drain, rinse under cold water, and toss with 1 tsp oil.",
+      "Heat 1/2 tbsp oil in a pan, pour in beaten eggs, scramble softly for 1 minute, and set aside.",
+      "Heat remaining 1 tbsp oil on high heat. Add minced garlic, onions, and carrots; toss rapidly for 2 minutes.",
+      "Add cooked noodles, scrambled eggs, soy sauce, vinegar, black pepper, and salt.",
+      "Using two spatulas, toss everything together on high heat for 2 minutes until steaming.",
+      "Serve hot with chili sauce."
+    ],
+    "tips": [
+      "Rinsing cooked noodles under cold water stops the cooking process and prevents mushiness.",
+      "Add sliced green chillies for an Indian-Chinese spicy kick."
+    ],
+    "nutrition_estimate": {
+      "calories": "420 kcal",
+      "protein": "15g",
+      "carbohydrates": "56g",
+      "fat": "14g"
+    },
+    "image_url": "https://images.unsplash.com/photo-1585032226651-759b368d7246?w=600&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "dal-tadka-rice",
+    "name": "Homestyle Dal Tadka & Rice",
+    "cuisine": "Indian",
+    "category": "Indian",
+    "cooking_time": 25,
+    "servings": 2,
+    "difficulty": "Easy",
+    "dietary_tags": ["Vegetarian", "High Protein", "Low Oil"],
+    "description": "Comforting yellow lentils tempered with ghee, cumin seeds, garlic, and fresh coriander, served over warm steamed rice.",
+    "ingredients": ["dal", "rice", "tomato", "onion", "garlic", "cumin", "oil", "turmeric", "salt"],
+    "ingredient_details": [
+      "3/4 cup toor or yellow moong dal",
+      "1 cup white or brown rice",
+      "1 small onion, chopped",
+      "1 medium tomato, chopped",
+      "4 cloves garlic, crushed",
+      "1 tsp cumin seeds",
+      "1/2 tsp turmeric powder",
+      "1 tbsp ghee or cooking oil",
+      "Salt to taste"
+    ],
+    "steps": [
+      "Wash dal and cook with 2 cups water, turmeric, and salt (pressure cook for 3-4 whistles or simmer in a pot for 20 mins).",
+      "In a small pan, heat ghee or oil for the tadka (tempering).",
+      "Add cumin seeds and let them sizzle. Add crushed garlic and fry until fragrant and lightly brown.",
+      "Add onions and fry until light brown, then add chopped tomatoes and cook until soft.",
+      "Pour this aromatic tadka into the cooked dal and stir well. Simmer for 2 minutes.",
+      "Serve warm over fresh steamed rice."
+    ],
+    "tips": [
+      "Yellow moong dal cooks fastest without needing a pressure cooker.",
+      "Ghee in the tadka elevates the aroma significantly compared to oil."
+    ],
+    "nutrition_estimate": {
+      "calories": "390 kcal",
+      "protein": "16g",
+      "carbohydrates": "68g",
+      "fat": "6g"
+    },
+    "image_url": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=600&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "fluffy-masala-omelette",
+    "name": "Fluffy Masala Omelette & Toast",
+    "cuisine": "Indian",
+    "category": "Breakfast",
+    "cooking_time": 10,
+    "servings": 1,
+    "difficulty": "Easy",
+    "dietary_tags": ["Egg", "High Protein", "Quick Meals"],
+    "description": "Classic Indian road-side spiced omelette with onions, tomatoes, and green chillies served with buttered toasted bread.",
+    "ingredients": ["egg", "onion", "tomato", "green chilli", "bread", "butter", "turmeric", "salt"],
+    "ingredient_details": [
+      "2 large eggs",
+      "1/4 cup finely chopped onion",
+      "2 tbsp finely chopped tomato",
+      "1 small green chilli, minced",
+      "1/4 tsp turmeric powder",
+      "2 slices of bread",
+      "1 tsp butter or oil",
+      "Salt and black pepper to taste"
+    ],
+    "steps": [
+      "In a bowl, whisk eggs with onion, tomato, green chilli, turmeric, salt, and pepper until frothy.",
+      "Melt 1/2 tsp butter in a non-stick frying pan over medium heat.",
+      "Pour in the whisked egg mixture, tilting the pan so it spreads evenly into a circle.",
+      "Cook for 2 minutes until the bottom is set and edges lift easily.",
+      "Flip carefully and cook the other side for 1 minute until cooked through and golden.",
+      "Toast bread in the same pan with remaining butter and serve with the hot omelette."
+    ],
+    "tips": [
+      "Whisking eggs vigorously for 45 seconds incorporates air, making the omelette soft and fluffy.",
+      "Keep onions finely chopped so they cook through quickly."
+    ],
+    "nutrition_estimate": {
+      "calories": "290 kcal",
+      "protein": "16g",
+      "carbohydrates": "24g",
+      "fat": "14g"
+    },
+    "image_url": "https://images.unsplash.com/photo-1510693206972-df098062cb71?w=600&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "quick-kanda-poha",
+    "name": "Quick Kanda Poha",
+    "cuisine": "Indian",
+    "category": "Breakfast",
+    "cooking_time": 12,
+    "servings": 2,
+    "difficulty": "Easy",
+    "dietary_tags": ["Vegetarian", "Vegan", "Quick Meals", "Low Oil"],
+    "description": "Light, fluffy flattened rice seasoned with mustard seeds, onions, crunchy peanuts, and fresh lemon juice.",
+    "ingredients": ["poha", "onion", "potato", "green chilli", "peanuts", "turmeric", "oil", "lemon", "salt"],
+    "ingredient_details": [
+      "1.5 cups medium or thick poha (flattened rice)",
+      "1 medium onion, chopped",
+      "1 small boiled or finely diced potato",
+      "1 green chilli, chopped",
+      "2 tbsp roasted peanuts",
+      "1/2 tsp mustard seeds",
+      "1/2 tsp turmeric powder",
+      "1 tbsp cooking oil",
+      "1 tbsp fresh lemon juice",
+      "Salt to taste"
+    ],
+    "steps": [
+      "Rinse poha in a colander under running water for 30 seconds; drain completely and let rest so it fluffs up.",
+      "Heat oil in a pan over medium heat. Add mustard seeds and let them crackle.",
+      "Add peanuts and sauté for 1 minute until golden, then add onions, green chilli, and diced potato.",
+      "Cook for 3-4 minutes until onions are soft and potatoes are tender.",
+      "Add turmeric powder and salt, then gently add the softened poha.",
+      "Toss gently on low heat for 2-3 minutes. Turn off heat, drizzle lemon juice, and serve warm."
+    ],
+    "tips": [
+      "Do not soak poha in a bowl of water—just rinse in a sieve to avoid turning it mushy.",
+      "Peanuts add a satisfying crunch and bonus plant protein."
+    ],
+    "nutrition_estimate": {
+      "calories": "260 kcal",
+      "protein": "6g",
+      "carbohydrates": "48g",
+      "fat": "6g"
+    },
+    "image_url": "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=600&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "vegetable-upma",
+    "name": "Vegetable Rava Upma",
+    "cuisine": "Indian",
+    "category": "Breakfast",
+    "cooking_time": 15,
+    "servings": 2,
+    "difficulty": "Easy",
+    "dietary_tags": ["Vegetarian", "Low Oil", "Quick Meals"],
+    "description": "Savory South Indian semolina porridge cooked with mustard seeds, ginger, onions, carrots, and green chillies.",
+    "ingredients": ["rava", "onion", "carrot", "green chilli", "ginger", "oil", "mustard seeds", "salt"],
+    "ingredient_details": [
+      "1 cup rava / sooji (semolina)",
+      "2.5 cups water",
+      "1 small onion, finely chopped",
+      "1/4 cup finely chopped carrot",
+      "1 green chilli, slit",
+      "1/2 tsp grated ginger",
+      "1 tsp mustard seeds",
+      "1 tbsp oil or ghee",
+      "Salt to taste"
+    ],
+    "steps": [
+      "Dry roast rava in a pan on medium-low flame for 3-4 minutes until warm and fragrant; set aside.",
+      "Heat oil in the pan. Add mustard seeds and let them splutter.",
+      "Add ginger, green chilli, chopped onions, and carrots. Sauté for 3 minutes until soft.",
+      "Add 2.5 cups water and salt; bring to a rolling boil.",
+      "Lower the flame. Slowly pour the roasted rava in a continuous stream with one hand while stirring continuously with the other to avoid lumps.",
+      "Cover and cook on low heat for 2 minutes until water is absorbed and upma is soft and fluffy."
+    ],
+    "tips": [
+      "Pouring the semolina gradually while stirring prevents any lump formation.",
+      "A spoonful of ghee on top right before serving makes it incredibly comforting."
+    ],
+    "nutrition_estimate": {
+      "calories": "280 kcal",
+      "protein": "7g",
+      "carbohydrates": "52g",
+      "fat": "5g"
+    },
+    "image_url": "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=600&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "one-pot-chole",
+    "name": "One-Pot Easy Chole (Chickpea Curry)",
+    "cuisine": "Indian",
+    "category": "Indian",
+    "cooking_time": 25,
+    "servings": 3,
+    "difficulty": "Medium",
+    "dietary_tags": ["Vegetarian", "Vegan", "High Protein"],
+    "description": "Rich, spicy North Indian chickpea curry infused with ginger, garlic, tomato gravy, and chole masala.",
+    "ingredients": ["chickpeas", "onion", "tomato", "ginger", "garlic", "chole masala", "oil", "salt"],
+    "ingredient_details": [
+      "1.5 cups boiled or canned chickpeas (kabuli chana)",
+      "1 large onion, pureed or finely chopped",
+      "2 ripe tomatoes, pureed",
+      "1 tbsp ginger-garlic paste",
+      "1.5 tbsp chole masala or garam masala",
+      "1/2 tsp turmeric powder",
+      "1.5 tbsp cooking oil",
+      "Salt to taste"
+    ],
+    "steps": [
+      "Heat oil in a heavy-bottomed pot over medium heat.",
+      "Add chopped onions and fry for 5-6 minutes until golden brown.",
+      "Add ginger-garlic paste and sauté for 1 minute until the raw aroma disappears.",
+      "Add tomato puree, turmeric, chole masala, and salt. Cook until oil starts separating from the masala.",
+      "Add the boiled chickpeas and 1 cup water. Mash a few chickpeas with the back of a spoon to thicken the gravy.",
+      "Simmer for 10-12 minutes on low heat so the chickpeas absorb all the spices. Serve with rice or bread."
+    ],
+    "tips": [
+      "Mashing 10% of the chickpeas creates a thick, restaurant-style gravy naturally without cornstarch.",
+      "Canned chickpeas save 30 minutes of soaking and boiling time."
+    ],
+    "nutrition_estimate": {
+      "calories": "350 kcal",
+      "protein": "15g",
+      "carbohydrates": "50g",
+      "fat": "10g"
+    },
+    "image_url": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=600&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "cheesy-garlic-bread",
+    "name": "Cheesy Golden Garlic Bread",
+    "cuisine": "Continental",
+    "category": "Snacks",
+    "cooking_time": 10,
+    "servings": 2,
+    "difficulty": "Easy",
+    "dietary_tags": ["Vegetarian", "Quick Meals"],
+    "description": "Crispy toasted bread slices slathered with rich garlic herb butter and topped with gooey melted cheese.",
+    "ingredients": ["bread", "garlic", "butter", "cheese", "oregano", "chilli flakes"],
+    "ingredient_details": [
+      "4 slices of bread (baguette, sourdough, or sandwich bread)",
+      "4 cloves garlic, very finely minced",
+      "2 tbsp softened butter",
+      "1/2 cup grated mozzarella or processed cheese",
+      "1/2 tsp dried oregano",
+      "1/4 tsp chili flakes"
+    ],
+    "steps": [
+      "In a small bowl, mix softened butter, minced garlic, and oregano into a spreadable garlic butter.",
+      "Spread garlic butter generously on one side of each bread slice.",
+      "Place bread slices on a preheated tawa/skillet buttered side down for 1 minute until crisp.",
+      "Flip, heap grated cheese on top, sprinkle with chili flakes, and cover with a lid on low flame for 2-3 minutes until cheese melts.",
+      "Cut into fingers and serve hot."
+    ],
+    "tips": [
+      "Covering the pan with a lid is essential for melting cheese without an oven.",
+      "Use softened room-temperature butter rather than melted butter for the best spread."
+    ],
+    "nutrition_estimate": {
+      "calories": "270 kcal",
+      "protein": "8g",
+      "carbohydrates": "26g",
+      "fat": "15g"
+    },
+    "image_url": "https://images.unsplash.com/photo-1619860860774-1e2e17343432?w=600&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "creamy-tomato-soup",
+    "name": "Creamy Tomato Soup & Croutons",
+    "cuisine": "Continental",
+    "category": "Quick Meals",
+    "cooking_time": 18,
+    "servings": 2,
+    "difficulty": "Easy",
+    "dietary_tags": ["Vegetarian", "Low Oil"],
+    "description": "Smooth, velvety roasted tomato soup seasoned with garlic, black pepper, and topped with crunchy bread croutons.",
+    "ingredients": ["tomato", "onion", "garlic", "bread", "butter", "milk", "black pepper", "salt"],
+    "ingredient_details": [
+      "4 large ripe red tomatoes, roughly chopped",
+      "1 small onion, chopped",
+      "3 cloves garlic",
+      "1 tbsp butter",
+      "1/4 cup milk or cream",
+      "2 slices bread (for croutons)",
+      "1/2 tsp black pepper",
+      "Salt and sugar to balance acidity"
+    ],
+    "steps": [
+      "Heat butter in a pot; add garlic and onion, cooking for 2 minutes.",
+      "Add chopped tomatoes, 1 cup water, salt, and pepper. Simmer for 10 minutes until tomatoes are mushy.",
+      "Blend the tomato mixture until smooth using an immersion blender or mixer; strain if you prefer a silky texture.",
+      "Return soup to pot, stir in milk or cream, and simmer on low for 2 minutes. Adjust salt and sugar.",
+      "Cut bread into cubes and toast in a dry pan until crunchy croutons form.",
+      "Ladle hot soup into bowls and top with crispy croutons."
+    ],
+    "tips": [
+      "A pinch of sugar cuts through tomato acidity and brings out natural sweetness.",
+      "Stir the milk in on low heat so it doesn't curdle."
+    ],
+    "nutrition_estimate": {
+      "calories": "210 kcal",
+      "protein": "5g",
+      "carbohydrates": "28g",
+      "fat": "9g"
+    },
+    "image_url": "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=600&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "aloo-jeera",
+    "name": "Quick Aloo Jeera (Cumin Spiced Potatoes)",
+    "cuisine": "Indian",
+    "category": "Indian",
+    "cooking_time": 15,
+    "servings": 2,
+    "difficulty": "Easy",
+    "dietary_tags": ["Vegetarian", "Vegan", "Quick Meals", "Low Oil"],
+    "description": "Crispy pan-fried potato cubes tossed with roasted cumin seeds, green chillies, turmeric, and fresh cilantro.",
+    "ingredients": ["potato", "cumin", "green chilli", "turmeric", "oil", "salt"],
+    "ingredient_details": [
+      "2 medium boiled potatoes, peeled and cubed",
+      "1.5 tsp cumin seeds (jeera)",
+      "1 green chilli, finely chopped",
+      "1/2 tsp turmeric powder",
+      "1/2 tsp red chilli powder",
+      "1 tbsp cooking oil",
+      "1/2 tsp amchur (dry mango powder) or lemon juice",
+      "Salt to taste"
+    ],
+    "steps": [
+      "Heat oil in a pan over medium heat.",
+      "Add cumin seeds and let them sizzle until dark golden and fragrant.",
+      "Add chopped green chilli and turmeric powder; stir for 10 seconds.",
+      "Add cubed potatoes and salt. Toss gently to coat in the cumin oil.",
+      "Roast on medium flame for 5-6 minutes, flipping occasionally until the potato edges turn crispy and golden.",
+      "Sprinkle amchur or squeeze lemon juice, toss once more, and serve hot."
+    ],
+    "tips": [
+      "Let boiled potatoes cool completely before slicing so they don't break into mash.",
+      "Pairs wonderfully with toast, paratha, or dal rice."
+    ],
+    "nutrition_estimate": {
+      "calories": "220 kcal",
+      "protein": "4g",
+      "carbohydrates": "34g",
+      "fat": "8g"
+    },
+    "image_url": "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=600&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "easy-vegetable-pulao",
+    "name": "One-Pot Vegetable Pulao",
+    "cuisine": "Indian",
+    "category": "Rice & Bowls",
+    "cooking_time": 25,
+    "servings": 3,
+    "difficulty": "Easy",
+    "dietary_tags": ["Vegetarian", "Vegan", "Low Oil"],
+    "description": "Fragrant basmati rice cooked with whole spices, sliced onions, carrots, and peas for an effortless one-pot meal.",
+    "ingredients": ["rice", "onion", "carrot", "peas", "cumin", "oil", "garam masala", "salt"],
+    "ingredient_details": [
+      "1.5 cups basmati rice (rinsed and soaked for 15 mins)",
+      "1 medium onion, sliced thinly",
+      "1/2 cup diced carrots",
+      "1/2 cup green peas",
+      "1 tsp cumin seeds",
+      "1 bay leaf and 2 cloves (optional)",
+      "1/2 tsp garam masala",
+      "1.5 tbsp oil or ghee",
+      "Salt to taste"
+    ],
+    "steps": [
+      "Heat oil or ghee in a deep pot or pressure cooker.",
+      "Add cumin seeds, bay leaf, and cloves; let them crackle.",
+      "Add sliced onions and sauté for 4 minutes until light golden.",
+      "Toss in carrots and green peas; sauté for 2 minutes.",
+      "Add drained rice, garam masala, salt, and 3 cups of water.",
+      "Cover and cook on low heat for 12-15 minutes until water is absorbed and rice is tender. Fluff with a fork and serve."
+    ],
+    "tips": [
+      "Do not stir rice excessively while cooking or the long grains will snap.",
+      "Serve with plain curd or boondi raita for a complete dinner."
+    ],
+    "nutrition_estimate": {
+      "calories": "330 kcal",
+      "protein": "7g",
+      "carbohydrates": "62g",
+      "fat": "6g"
+    },
+    "image_url": "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=600&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "chili-garlic-paneer-stirfry",
+    "name": "Chili Garlic Paneer Stir-Fry",
+    "cuisine": "Chinese",
+    "category": "Quick Meals",
+    "cooking_time": 15,
+    "servings": 2,
+    "difficulty": "Easy",
+    "dietary_tags": ["Vegetarian", "High Protein", "Quick Meals"],
+    "description": "Tender paneer cubes tossed in a fiery garlic and soy glaze with crunchy bell peppers and onions.",
+    "ingredients": ["paneer", "garlic", "capsicum", "onion", "soy sauce", "chilli sauce", "oil", "salt"],
+    "ingredient_details": [
+      "200g paneer, cut into cubes",
+      "4 cloves garlic, minced",
+      "1 medium capsicum / bell pepper, diced",
+      "1 small onion, diced into squares",
+      "1.5 tbsp soy sauce",
+      "1 tbsp red chilli sauce or sriracha",
+      "1 tbsp cooking oil",
+      "Salt and black pepper to taste"
+    ],
+    "steps": [
+      "Heat oil in a skillet or wok over medium-high heat.",
+      "Add paneer cubes and shallow fry for 2-3 minutes until lightly golden; transfer to a plate.",
+      "In the same hot pan, add minced garlic and sauté for 30 seconds until aromatic.",
+      "Add diced onions and capsicum; stir-fry briskly on high flame for 2 minutes to keep them crisp.",
+      "Add soy sauce, red chilli sauce, black pepper, and 2 tbsp water to create a sauce.",
+      "Toss the pan-fried paneer cubes into the sauce until glazed and piping hot."
+    ],
+    "tips": [
+      "Soak paneer in warm water for 5 minutes before cooking if it feels firm from the fridge.",
+      "Makes a delicious high-protein student dinner ready in just 15 minutes."
+    ],
+    "nutrition_estimate": {
+      "calories": "360 kcal",
+      "protein": "19g",
+      "carbohydrates": "12g",
+      "fat": "26g"
+    },
+    "image_url": "https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=600&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "student-special-egg-curry",
+    "name": "Student Special 20-Min Egg Curry",
+    "cuisine": "Indian",
+    "category": "Indian",
+    "cooking_time": 20,
+    "servings": 2,
+    "difficulty": "Easy",
+    "dietary_tags": ["Egg", "High Protein"],
+    "description": "Boiled eggs simmered in a spiced onion-tomato gravy flavored with ginger, garlic, and garam masala.",
+    "ingredients": ["egg", "onion", "tomato", "ginger", "garlic", "turmeric", "oil", "garam masala", "salt"],
+    "ingredient_details": [
+      "4 hard-boiled eggs, peeled and lightly pierced",
+      "1 large onion, finely chopped",
+      "2 tomatoes, pureed or finely chopped",
+      "1 tsp ginger-garlic paste",
+      "1/2 tsp turmeric powder",
+      "1 tsp coriander powder",
+      "1/2 tsp garam masala",
+      "1.5 tbsp cooking oil",
+      "Salt to taste"
+    ],
+    "steps": [
+      "Heat 1/2 tbsp oil in a pan with a pinch of turmeric and salt; lightly roll the boiled eggs for 2 minutes until blistered and golden, then remove.",
+      "Add remaining oil to the pan. Add chopped onions and cook for 4-5 minutes until golden brown.",
+      "Stir in ginger-garlic paste and cook for 1 minute.",
+      "Add tomatoes, turmeric, coriander powder, and salt. Cook until the tomato masala releases oil.",
+      "Add 3/4 cup water, bring to a simmer, and slide in the golden boiled eggs.",
+      "Simmer for 5 minutes until the curry thickens. Sprinkle garam masala and serve with rice or bread."
+    ],
+    "tips": [
+      "Pricking eggs with a fork prevents them from bursting when frying and lets the curry soak into the whites.",
+      "Keep hard-boiled eggs in your fridge for ultra-fast weekday protein meals."
+    ],
+    "nutrition_estimate": {
+      "calories": "310 kcal",
+      "protein": "16g",
+      "carbohydrates": "14g",
+      "fat": "21g"
+    },
+    "image_url": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=600&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "upgraded-veggie-maggi-egg",
+    "name": "Upgraded Ramen with Veggies & Egg",
+    "cuisine": "Continental",
+    "category": "Quick Meals",
+    "cooking_time": 10,
+    "servings": 1,
+    "difficulty": "Easy",
+    "dietary_tags": ["Egg", "Quick Meals"],
+    "description": "The ultimate student staple upgraded with sautéed onions, tomatoes, crunchy veggies, and a fried or poached egg.",
+    "ingredients": ["noodles", "onion", "tomato", "egg", "oil", "green chilli", "salt"],
+    "ingredient_details": [
+      "1 pack instant noodles (Maggi or Ramen)",
+      "1 packet noodle tastemaker seasoning",
+      "1/4 small onion, finely chopped",
+      "1/2 small tomato, chopped",
+      "1 large egg",
+      "1/2 green chilli, slit",
+      "1 tsp oil or butter",
+      "1.5 cups water"
+    ],
+    "steps": [
+      "Heat oil in a small pot or pan. Add onions and green chilli; sauté for 1 minute.",
+      "Add tomatoes and cook for 1 minute until softened.",
+      "Pour in 1.5 cups water and add the noodle seasoning packet; bring to a boil.",
+      "Break in the noodles. Cook on medium heat for 2 minutes.",
+      "Crack an egg right in the center of the bubbling noodles. Cover with a lid and simmer for 2 minutes until egg white is set and yolk is jammy.",
+      "Serve hot right out of the bowl."
+    ],
+    "tips": [
+      "Covering the pan lets the steam gently poach the egg right on top of the noodles.",
+      "Add a slice of cheese on top for an indulgent cafe-style creamy ramen."
+    ],
+    "nutrition_estimate": {
+      "calories": "380 kcal",
+      "protein": "13g",
+      "carbohydrates": "48g",
+      "fat": "15g"
+    },
+    "image_url": "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=600&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "high-protein-chickpea-salad",
+    "name": "High-Protein Chaat Chickpea Salad",
+    "cuisine": "Indian",
+    "category": "Healthy",
+    "cooking_time": 8,
+    "servings": 2,
+    "difficulty": "Easy",
+    "dietary_tags": ["Vegetarian", "Vegan", "High Protein", "Low Oil", "Quick Meals"],
+    "description": "No-cook zesty chickpea salad tossed with crisp cucumbers, ripe tomatoes, red onions, lemon juice, and tangy chaat masala.",
+    "ingredients": ["chickpeas", "cucumber", "tomato", "onion", "lemon", "chaat masala", "salt"],
+    "ingredient_details": [
+      "1.5 cups boiled or canned chickpeas, rinsed",
+      "1 medium cucumber, diced",
+      "1 ripe tomato, diced",
+      "1 small red onion, finely chopped",
+      "1 tbsp fresh lemon juice",
+      "1 tsp chaat masala",
+      "Salt and black pepper to taste"
+    ],
+    "steps": [
+      "Add rinsed chickpeas to a large mixing bowl.",
+      "Add diced cucumber, tomato, and finely chopped onion.",
+      "Sprinkle chaat masala, a pinch of black pepper, and salt.",
+      "Drizzle fresh lemon juice over everything.",
+      "Toss thoroughly to combine all flavors and serve immediately or chill in the fridge."
+    ],
+    "tips": [
+      "Zero cooking required! Perfect for busy study days or a post-workout snack.",
+      "Add diced boiled potato or roasted peanuts for extra texture."
+    ],
+    "nutrition_estimate": {
+      "calories": "230 kcal",
+      "protein": "12g",
+      "carbohydrates": "38g",
+      "fat": "3g"
+    },
+    "image_url": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "fifteen-minute-mug-cake",
+    "name": "5-Minute Chocolate Mug Cake",
+    "cuisine": "Continental",
+    "category": "Desserts",
+    "cooking_time": 5,
+    "servings": 1,
+    "difficulty": "Easy",
+    "dietary_tags": ["Vegetarian", "Desserts", "Quick Meals"],
+    "description": "Single-serving rich, molten chocolate cake mixed right inside a mug and cooked in under 2 minutes in the microwave.",
+    "ingredients": ["flour", "milk", "sugar", "cocoa powder", "oil", "baking powder"],
+    "ingredient_details": [
+      "3 tbsp all-purpose flour (maida)",
+      "2 tbsp sugar",
+      "1 tbsp cocoa powder",
+      "1/4 tsp baking powder",
+      "3 tbsp milk",
+      "1 tbsp vegetable oil or melted butter",
+      "1 piece chocolate (optional for molten center)"
+    ],
+    "steps": [
+      "In a microwave-safe mug, whisk together flour, sugar, cocoa powder, and baking powder with a fork.",
+      "Add milk and oil; stir until a smooth batter forms with no dry flour lumps.",
+      "Drop a chunk of chocolate into the center of the batter.",
+      "Microwave on high for 70-80 seconds until the top has risen and looks set.",
+      "Let cool for 1 minute before digging in."
+    ],
+    "tips": [
+      "Do not overcook or the cake will dry out—it should look slightly moist on top when done.",
+      "Top with a scoop of vanilla ice cream for a real dessert treat."
+    ],
+    "nutrition_estimate": {
+      "calories": "270 kcal",
+      "protein": "4g",
+      "carbohydrates": "38g",
+      "fat": "11g"
+    },
+    "image_url": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "mexican-bean-cheese-quesadilla",
+    "name": "Cheesy Black Bean Quesadilla",
+    "cuisine": "Mexican",
+    "category": "Snacks",
+    "cooking_time": 12,
+    "servings": 1,
+    "difficulty": "Easy",
+    "dietary_tags": ["Vegetarian", "High Protein", "Quick Meals"],
+    "description": "Crispy golden flour tortilla filled with seasoned mashed beans, sweet corn, melted cheddar cheese, and cumin.",
+    "ingredients": ["bread", "beans", "cheese", "onion", "tomato", "cumin", "oil", "salt"],
+    "ingredient_details": [
+      "1 large flour tortilla or flatbread",
+      "1/2 cup canned black beans or boiled rajma, lightly mashed",
+      "1/3 cup shredded cheese",
+      "2 tbsp finely diced onion",
+      "1/4 tsp cumin powder",
+      "1 tsp oil or butter",
+      "Salt to taste"
+    ],
+    "steps": [
+      "In a small bowl, mix mashed beans with cumin, diced onion, and a pinch of salt.",
+      "Place tortilla flat and spread cheese over one half.",
+      "Spread the seasoned bean mixture on top of the cheese, then top with a little more cheese.",
+      "Fold the tortilla in half over the filling to make a semi-circle.",
+      "Heat oil in a pan over medium heat; toast the quesadilla for 3 minutes per side until golden brown and cheese melts.",
+      "Cut into wedges and serve with salsa or yogurt."
+    ],
+    "tips": [
+      "Putting cheese both below and above the beans glues the quesadilla together perfectly.",
+      "Leftover boiled rajma makes an exceptional filling."
+    ],
+    "nutrition_estimate": {
+      "calories": "340 kcal",
+      "protein": "14g",
+      "carbohydrates": "40g",
+      "fat": "14g"
+    },
+    "image_url": "https://images.unsplash.com/photo-1618040996337-56904b7850b9?w=600&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "korean-spicy-egg-rice",
+    "name": "Korean Style Spicy Fried Egg Rice",
+    "cuisine": "Korean",
+    "category": "Rice & Bowls",
+    "cooking_time": 10,
+    "servings": 1,
+    "difficulty": "Easy",
+    "dietary_tags": ["Egg", "Quick Meals"],
+    "description": "Steaming bowl of warm rice topped with a crispy fried egg, savory soy-sesame drizzle, and spicy chili oil.",
+    "ingredients": ["rice", "egg", "soy sauce", "garlic", "oil", "chilli powder", "salt"],
+    "ingredient_details": [
+      "1 bowl warm cooked rice",
+      "1 large egg",
+      "1 clove garlic, finely grated",
+      "1 tbsp soy sauce",
+      "1 tsp sesame oil or butter",
+      "1/2 tsp chili flakes or gochugaru",
+      "1 tbsp cooking oil"
+    ],
+    "steps": [
+      "Heat cooking oil in a frying pan over medium-high heat.",
+      "Crack in the egg and fry until edges are deeply browned and crispy, with the yolk still runny.",
+      "Place warm rice in your serving bowl.",
+      "In a tiny dish, mix soy sauce, grated garlic, sesame oil, and chili flakes.",
+      "Slide the crispy fried egg on top of the warm rice.",
+      "Drizzle the garlic-soy-chili sauce over the egg and rice, break the yolk, and mix everything together thoroughly."
+    ],
+    "tips": [
+      "The runny yolk blends with soy sauce and sesame oil to create a luscious rich glaze on each grain of rice.",
+      "Takes only 8 minutes and costs pennies."
+    ],
+    "nutrition_estimate": {
+      "calories": "330 kcal",
+      "protein": "10g",
+      "carbohydrates": "45g",
+      "fat": "12g"
+    },
+    "image_url": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "crispy-bread-roll",
+    "name": "Crispy Spiced Potato Bread Rolls",
+    "cuisine": "Indian",
+    "category": "Snacks",
+    "cooking_time": 18,
+    "servings": 2,
+    "difficulty": "Easy",
+    "dietary_tags": ["Vegetarian", "Vegan"],
+    "description": "Classic Indian evening snack: bread slices stuffed with spiced mashed potatoes, rolled and pan-toasted until crackly.",
+    "ingredients": ["bread", "potato", "green chilli", "onion", "turmeric", "oil", "salt"],
+    "ingredient_details": [
+      "4 slices of white or brown bread",
+      "2 medium boiled potatoes, mashed",
+      "1 small onion, finely chopped",
+      "1 green chilli, chopped",
+      "1/4 tsp turmeric powder",
+      "1/2 tsp chaat masala",
+      "2 tbsp oil for shallow frying",
+      "Salt to taste"
+    ],
+    "steps": [
+      "In a bowl, mix mashed potatoes with onions, green chilli, turmeric, chaat masala, and salt.",
+      "Shape the potato mixture into 4 cylindrical logs.",
+      "Dip a bread slice in a shallow bowl of water for 2 seconds; immediately squeeze between your palms to remove excess water.",
+      "Place a potato log in the center of the moist bread, roll and seal edges tightly to form a neat roll.",
+      "Heat oil in a pan and pan-fry the rolls, turning frequently for 5-6 minutes until deep golden brown and crunchy.",
+      "Serve hot with tomato sauce."
+    ],
+    "tips": [
+      "Press the wet bread firmly between both palms so it turns pliable and seals without tearing.",
+      "Pan-frying gives the same crunch as deep frying with 80% less oil."
+    ],
+    "nutrition_estimate": {
+      "calories": "280 kcal",
+      "protein": "6g",
+      "carbohydrates": "42g",
+      "fat": "10g"
+    },
+    "image_url": "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=600&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "paneer-bhurji-toast",
+    "name": "Street-Style Paneer Bhurji & Toast",
+    "cuisine": "Indian",
+    "category": "Breakfast",
+    "cooking_time": 15,
+    "servings": 2,
+    "difficulty": "Easy",
+    "dietary_tags": ["Vegetarian", "High Protein", "Quick Meals"],
+    "description": "Crumbled paneer cooked with sautéed onions, tomatoes, green chillies, and fragrant spices, served over buttery toast.",
+    "ingredients": ["paneer", "onion", "tomato", "green chilli", "bread", "butter", "turmeric", "salt"],
+    "ingredient_details": [
+      "200g paneer, crumbled with hands",
+      "1 medium onion, chopped",
+      "1 ripe tomato, chopped",
+      "1 green chilli, chopped",
+      "1/2 tsp turmeric powder",
+      "1/2 tsp garam masala",
+      "4 slices of bread",
+      "1 tbsp butter or oil",
+      "Salt to taste"
+    ],
+    "steps": [
+      "Melt butter in a skillet over medium heat.",
+      "Add chopped onions and green chilli; sauté for 3 minutes until translucent.",
+      "Add tomatoes, turmeric, garam masala, and salt. Cook for 2-3 minutes until soft and pulpy.",
+      "Add crumbled paneer and toss gently on medium heat for 2-3 minutes until heated through and coated.",
+      "Do not overcook the paneer so it stays juicy and tender.",
+      "Toast bread slices with a little butter on a tawa; spoon hot paneer bhurji over the toast and enjoy."
+    ],
+    "tips": [
+      "Crumbling paneer unevenly with hands gives the dish authentic texture rather than grating it fine.",
+      "A splash of milk keeps the bhurji wonderfully moist."
+    ],
+    "nutrition_estimate": {
+      "calories": "390 kcal",
+      "protein": "18g",
+      "carbohydrates": "32g",
+      "fat": "21g"
+    },
+    "image_url": "https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=600&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "peanut-butter-banana-oats",
+    "name": "Creamy Peanut Butter & Banana Oats",
+    "cuisine": "Continental",
+    "category": "Healthy",
+    "cooking_time": 8,
+    "servings": 1,
+    "difficulty": "Easy",
+    "dietary_tags": ["Vegetarian", "High Protein", "Low Oil", "Quick Meals"],
+    "description": "Warm, creamy rolled oats cooked in milk, naturally sweetened with sliced banana, and topped with rich peanut butter.",
+    "ingredients": ["oats", "milk", "banana", "peanut butter", "honey", "salt"],
+    "ingredient_details": [
+      "1/2 cup rolled or instant oats",
+      "1 cup milk (dairy, almond, or oat)",
+      "1 ripe banana, sliced",
+      "1 tbsp creamy peanut butter",
+      "1 tsp honey or maple syrup",
+      "A tiny pinch of salt"
+    ],
+    "steps": [
+      "In a small pot, combine oats, milk, and a tiny pinch of salt.",
+      "Bring to a gentle simmer over medium heat, stirring occasionally for 3-4 minutes until thick and creamy.",
+      "Turn off the heat and stir in half of the sliced banana (it will soften into the warm oats).",
+      "Transfer to a breakfast bowl.",
+      "Top with remaining banana slices, a generous dollop of peanut butter, and a drizzle of honey."
+    ],
+    "tips": [
+      "A pinch of salt enhances the natural nutty sweetness of oats and peanut butter.",
+      "Can be made in the microwave in just 2 minutes on high power."
+    ],
+    "nutrition_estimate": {
+      "calories": "340 kcal",
+      "protein": "13g",
+      "carbohydrates": "54g",
+      "fat": "9g"
+    },
+    "image_url": "https://images.unsplash.com/photo-1517673132405-a56a62b18caf?w=600&auto=format&fit=crop&q=80"
+  }
+]
