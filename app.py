@@ -13,9 +13,9 @@ from recipe_engine import (
     TAVILY_API_KEY,
 )
 
-# ============================================================================
+# ===========================================================================
 # LOAD ENVIRONMENT
-# ============================================================================
+# ===========================================================================
 
 load_dotenv()
 
@@ -23,9 +23,9 @@ GEMINI_READY = bool(GEMINI_API_KEY)
 TAVILY_READY = bool(TAVILY_API_KEY)
 
 
-# ============================================================================
-# PAGE CONFIG
-# ============================================================================
+# ===========================================================================
+# PAGE CONFIGURATION
+# ===========================================================================
 
 st.set_page_config(
     page_title="SmartBite AI",
@@ -34,14 +34,28 @@ st.set_page_config(
 )
 
 
-# ============================================================================
+# ===========================================================================
 # VERIFY NODE
-# ============================================================================
+# ===========================================================================
 
 def verify_recipe(recipe, time_minutes, diet):
+    """
+    Verify Node
+
+    Validates Gemini-generated recipes before
+    displaying them to the user.
+    """
+
+    # -----------------------------------------------------------------------
+    # 1. Check recipe format
+    # -----------------------------------------------------------------------
 
     if not isinstance(recipe, dict):
         return False, "Recipe is not in the correct format."
+
+    # -----------------------------------------------------------------------
+    # 2. Check recipe name
+    # -----------------------------------------------------------------------
 
     recipe_name = str(
         recipe.get("recipe_name", "")
@@ -49,6 +63,10 @@ def verify_recipe(recipe, time_minutes, diet):
 
     if not recipe_name:
         return False, "Recipe name is missing."
+
+    # -----------------------------------------------------------------------
+    # 3. Check ingredients
+    # -----------------------------------------------------------------------
 
     ingredients = recipe.get(
         "ingredients_used",
@@ -66,6 +84,10 @@ def verify_recipe(recipe, time_minutes, diet):
             f"{recipe_name}: ingredients are missing."
         )
 
+    # -----------------------------------------------------------------------
+    # 4. Check cooking steps
+    # -----------------------------------------------------------------------
+
     steps = recipe.get(
         "steps",
         []
@@ -81,6 +103,10 @@ def verify_recipe(recipe, time_minutes, diet):
         return False, (
             f"{recipe_name}: cooking steps are missing."
         )
+
+    # -----------------------------------------------------------------------
+    # 5. Check cooking time
+    # -----------------------------------------------------------------------
 
     estimated_time = recipe.get(
         "estimated_time_minutes"
@@ -108,6 +134,10 @@ def verify_recipe(recipe, time_minutes, diet):
             f"your available time ({time_minutes} min)."
         )
 
+    # -----------------------------------------------------------------------
+    # Combine recipe information for diet verification
+    # -----------------------------------------------------------------------
+
     recipe_text = (
         recipe_name
         + " "
@@ -122,9 +152,9 @@ def verify_recipe(recipe, time_minutes, diet):
         )
     ).lower()
 
-    # ------------------------------------------------------------------------
-    # Vegetarian
-    # ------------------------------------------------------------------------
+    # -----------------------------------------------------------------------
+    # 6. Vegetarian verification
+    # -----------------------------------------------------------------------
 
     if diet.lower() == "vegetarian":
 
@@ -142,15 +172,14 @@ def verify_recipe(recipe, time_minutes, diet):
         for word in non_veg_words:
 
             if word in recipe_text:
-
                 return False, (
-                    f"{recipe_name}: recipe may not "
-                    "satisfy the vegetarian preference."
+                    f"{recipe_name}: recipe may not satisfy "
+                    "the vegetarian preference."
                 )
 
-    # ------------------------------------------------------------------------
-    # Vegan
-    # ------------------------------------------------------------------------
+    # -----------------------------------------------------------------------
+    # 7. Vegan verification
+    # -----------------------------------------------------------------------
 
     if diet.lower() == "vegan":
 
@@ -175,15 +204,14 @@ def verify_recipe(recipe, time_minutes, diet):
         for word in non_vegan_words:
 
             if word in recipe_text:
-
                 return False, (
-                    f"{recipe_name}: recipe may not "
-                    "satisfy the vegan preference."
+                    f"{recipe_name}: recipe may not satisfy "
+                    "the vegan preference."
                 )
 
-    # ------------------------------------------------------------------------
-    # Gluten Free
-    # ------------------------------------------------------------------------
+    # -----------------------------------------------------------------------
+    # 8. Gluten-free verification
+    # -----------------------------------------------------------------------
 
     if diet.lower() == "gluten-free":
 
@@ -200,18 +228,21 @@ def verify_recipe(recipe, time_minutes, diet):
         for word in gluten_words:
 
             if word in recipe_text:
-
                 return False, (
                     f"{recipe_name}: recipe may contain "
                     "gluten-containing ingredients."
                 )
 
+    # -----------------------------------------------------------------------
+    # 9. Verification successful
+    # -----------------------------------------------------------------------
+
     return True, "Recipe verified successfully."
 
 
-# ============================================================================
+# ===========================================================================
 # CUSTOM CSS
-# ============================================================================
+# ===========================================================================
 
 st.markdown(
     """
@@ -221,7 +252,7 @@ st.markdown(
         background: white;
         border: 1px solid #e5e7eb;
         border-radius: 16px;
-        padding: 22px;
+        padding: 24px 28px;
         margin-bottom: 20px;
     }
 
@@ -231,76 +262,86 @@ st.markdown(
             #ecfdf5 0%,
             #f0fdf4 100%
         );
-
         border: 1px solid #d1fae5;
         border-radius: 16px;
-
         padding: 28px 32px;
         margin-bottom: 20px;
     }
 
-    .sb-eyebrow {
+    .sb-pill-green {
         display: inline-block;
-
-        background: #d1fae5;
-        color: #047857;
-
+        background: #ecfdf5;
+        color: #059669;
+        border: 1px solid #a7f3d0;
         border-radius: 20px;
-
-        padding: 5px 14px;
-
-        font-size: 12px;
-        font-weight: 700;
-
-        margin-bottom: 10px;
+        padding: 6px 16px;
+        font-size: 13px;
+        font-weight: 600;
+        margin: 4px 6px 4px 0;
     }
 
-    /* ================================================================
-       YOUTUBE LINK CARD
-       ================================================================ */
+    .sb-pill-blue {
+        display: inline-block;
+        background: #eff6ff;
+        color: #2563eb;
+        border: 1px solid #bfdbfe;
+        border-radius: 20px;
+        padding: 6px 16px;
+        font-size: 13px;
+        font-weight: 600;
+        margin: 4px 6px 4px 0;
+    }
+
+    .sb-pill-gray {
+        display: inline-block;
+        background: #f9fafb;
+        color: #6b7280;
+        border: 1px solid #e5e7eb;
+        border-radius: 20px;
+        padding: 6px 16px;
+        font-size: 13px;
+        font-weight: 600;
+        margin: 4px 6px 4px 0;
+    }
+
+    .sb-eyebrow {
+        display: inline-block;
+        background: #d1fae5;
+        color: #047857;
+        border-radius: 20px;
+        padding: 4px 14px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+        margin-bottom: 12px;
+    }
 
     .youtube-card {
-        padding: 12px 15px;
+        padding: 10px 14px;
         border: 1px solid #e5e7eb;
         border-radius: 10px;
-        margin-bottom: 10px;
-        background: white;
+        margin-bottom: 8px;
+        background: #ffffff;
     }
 
     .youtube-link {
         text-decoration: none;
         font-weight: 600;
         color: #dc2626;
-        font-size: 15px;
     }
-
-    .youtube-link:hover {
-        text-decoration: underline;
-        color: #b91c1c;
-    }
-
-    /* ================================================================
-       WEB LINK CARD
-       ================================================================ */
 
     .web-card {
-        padding: 12px 15px;
+        padding: 10px 14px;
         border: 1px solid #e5e7eb;
         border-radius: 10px;
-        margin-bottom: 10px;
-        background: white;
+        margin-bottom: 8px;
+        background: #ffffff;
     }
 
     .web-link {
         text-decoration: none;
         font-weight: 600;
         color: #2563eb;
-        font-size: 15px;
-    }
-
-    .web-link:hover {
-        text-decoration: underline;
-        color: #1d4ed8;
     }
 
     </style>
@@ -309,15 +350,13 @@ st.markdown(
 )
 
 
-# ============================================================================
+# ===========================================================================
 # SIDEBAR
-# ============================================================================
+# ===========================================================================
 
 with st.sidebar:
 
-    st.markdown(
-        "### 🥗 SmartBite **AI**"
-    )
+    st.markdown("### 🥗 SmartBite **AI**")
 
     st.caption(
         "Recipe & Meal Assistant"
@@ -339,9 +378,9 @@ with st.sidebar:
     )
 
 
-# ============================================================================
+# ===========================================================================
 # HEADER
-# ============================================================================
+# ===========================================================================
 
 st.markdown(
     "## 🥗 SmartBite **AI**"
@@ -352,9 +391,9 @@ st.caption(
 )
 
 
-# ============================================================================
-# HOME
-# ============================================================================
+# ===========================================================================
+# HOME PAGE
+# ===========================================================================
 
 if page == "🏠 Home":
 
@@ -375,20 +414,21 @@ if page == "🏠 Home":
     )
 
     st.write(
-        "Tell us what's in your kitchen and "
-        "SmartBite AI will create suitable meals."
+        "Tell us what's in your kitchen and SmartBite AI "
+        "will match delicious possibilities, clearly showing "
+        "what you have and the exact minimal items you need."
     )
 
-    # ------------------------------------------------------------------------
-    # INPUT FORM
-    # ------------------------------------------------------------------------
+    # -----------------------------------------------------------------------
+    # RECIPE INPUT FORM
+    # -----------------------------------------------------------------------
 
     with st.form("recipe_form"):
 
         ingredients = st.text_area(
-            "Available ingredients",
+            "Available ingredients (comma-separated)",
             placeholder=(
-                "e.g. rice, onion, tomato, egg"
+                "e.g. rice, onion, tomato, eggs"
             ),
         )
 
@@ -397,7 +437,7 @@ if page == "🏠 Home":
         with col1:
 
             cuisine = st.selectbox(
-                "Cuisine",
+                "Cuisine preference",
                 [
                     "Any",
                     "Indian",
@@ -419,14 +459,14 @@ if page == "🏠 Home":
         with col2:
 
             time_minutes = st.slider(
-                "Available cooking time",
+                "Cooking time available (minutes)",
                 10,
                 120,
                 30,
             )
 
             diet = st.selectbox(
-                "Diet",
+                "Dietary preference",
                 [
                     "None",
                     "Vegetarian",
@@ -441,8 +481,7 @@ if page == "🏠 Home":
         )
 
         submitted = st.form_submit_button(
-            "🍳 Get Recipe",
-            use_container_width=True,
+            "Get Recipe"
         )
 
     st.markdown(
@@ -451,9 +490,9 @@ if page == "🏠 Home":
     )
 
 
-    # ------------------------------------------------------------------------
-    # GENERATE RECIPE
-    # ------------------------------------------------------------------------
+    # =======================================================================
+    # PROCESS REQUEST
+    # =======================================================================
 
     if submitted:
 
@@ -465,8 +504,12 @@ if page == "🏠 Home":
 
         else:
 
+            # ===============================================================
+            # NODE 1 — GEMINI
+            # ===============================================================
+
             with st.spinner(
-                "🧠 Creating recipes..."
+                "🧠 Creating your recipes..."
             ):
 
                 try:
@@ -482,7 +525,7 @@ if page == "🏠 Home":
                 except Exception as e:
 
                     st.error(
-                        f"Gemini error: {e}"
+                        f"Something went wrong calling Gemini: {e}"
                     )
 
                     result = None
@@ -500,23 +543,25 @@ if page == "🏠 Home":
                     ""
                 )
 
-                # ============================================================
-                # VERIFY NODE
-                # ============================================================
+
+                # ===========================================================
+                # NODE 2 — VERIFY NODE
+                # ===========================================================
 
                 verified_recipes = []
 
                 rejected_recipes = []
 
+
                 for recipe in raw_recipes:
 
-                    valid, message = verify_recipe(
+                    is_valid, message = verify_recipe(
                         recipe,
                         time_minutes,
                         diet,
                     )
 
-                    if valid:
+                    if is_valid:
 
                         verified_recipes.append(
                             recipe
@@ -525,16 +570,19 @@ if page == "🏠 Home":
                     else:
 
                         rejected_recipes.append(
-                            message
+                            {
+                                "recipe": recipe,
+                                "reason": message,
+                            }
                         )
+
 
                 recipes = verified_recipes
 
 
-                if note:
-
-                    st.info(note)
-
+                # -----------------------------------------------------------
+                # Verification result
+                # -----------------------------------------------------------
 
                 if recipes:
 
@@ -543,217 +591,242 @@ if page == "🏠 Home":
                         "verified successfully."
                     )
 
-                else:
+                elif raw_recipes:
+
+                    st.error(
+                        "❌ The generated recipes did not "
+                        "pass verification."
+                    )
+
+
+                if note:
+
+                    st.info(note)
+
+
+                # ===========================================================
+                # VERIFIED RECIPES
+                # ===========================================================
+
+                if not recipes:
 
                     st.warning(
-                        "No suitable verified recipe was found."
+                        "No suitable verified recipe could "
+                        "be generated. Try adding more ingredients "
+                        "or increasing the cooking time."
                     )
 
+                else:
 
-                # ============================================================
-                # DISPLAY VERIFIED RECIPES
-                # ============================================================
-
-                for recipe in recipes:
-
-                    st.markdown(
-                        '<div class="sb-card">',
-                        unsafe_allow_html=True,
-                    )
-
-                    recipe_name = recipe.get(
-                        "recipe_name",
-                        "Recipe",
-                    )
-
-                    estimated_time = recipe.get(
-                        "estimated_time_minutes",
-                        "?",
-                    )
-
-                    st.markdown(
-                        f"### 🍽️ {recipe_name}"
-                    )
-
-                    st.caption(
-                        f"⏱ Approximately {estimated_time} minutes"
-                    )
-
-                    # --------------------------------------------------------
-                    # USED INGREDIENTS
-                    # --------------------------------------------------------
-
-                    st.markdown(
-                        "**Ingredients used**"
-                    )
-
-                    for item in recipe.get(
-                        "ingredients_used",
-                        [],
-                    ):
-
-                        st.write(
-                            f"• {item}"
-                        )
-
-                    # --------------------------------------------------------
-                    # MISSING INGREDIENTS
-                    # --------------------------------------------------------
-
-                    missing = recipe.get(
-                        "missing_ingredients",
-                        [],
-                    )
-
-                    if missing:
+                    for recipe in recipes:
 
                         st.markdown(
-                            "**🛒 Missing ingredients**"
+                            '<div class="sb-card">',
+                            unsafe_allow_html=True,
                         )
 
-                        for item in missing:
 
-                            st.checkbox(
-                                item,
-                                key=f"{recipe_name}_{item}",
+                        recipe_name = recipe.get(
+                            "recipe_name",
+                            "Recipe",
+                        )
+
+
+                        estimated_time = recipe.get(
+                            "estimated_time_minutes",
+                            "?",
+                        )
+
+
+                        # ---------------------------------------------------
+                        # RECIPE NAME
+                        # ---------------------------------------------------
+
+                        st.markdown(
+                            f"#### 🍽️ {recipe_name} — "
+                            f"~{estimated_time} min"
+                        )
+
+
+                        # ---------------------------------------------------
+                        # INGREDIENTS USED
+                        # ---------------------------------------------------
+
+                        used = recipe.get(
+                            "ingredients_used",
+                            [],
+                        )
+
+
+                        st.markdown(
+                            "**Uses:** "
+                            + (
+                                ", ".join(used)
+                                if used
+                                else "—"
+                            )
+                        )
+
+
+                        # ---------------------------------------------------
+                        # MISSING INGREDIENTS
+                        # ---------------------------------------------------
+
+                        missing = recipe.get(
+                            "missing_ingredients",
+                            [],
+                        )
+
+
+                        if missing:
+
+                            st.markdown(
+                                "**Missing "
+                                "(you'll need to get these):**"
                             )
 
-                    # --------------------------------------------------------
-                    # STEPS
-                    # --------------------------------------------------------
 
-                    st.markdown(
-                        "**👨‍🍳 Cooking steps**"
-                    )
+                            for item in missing:
 
-                    for number, step in enumerate(
-                        recipe.get(
-                            "steps",
-                            [],
-                        ),
-                        start=1,
-                    ):
+                                st.checkbox(
+                                    item,
+                                    key=(
+                                        f"{recipe_name}_{item}"
+                                    ),
+                                )
+
+
+                        # ---------------------------------------------------
+                        # STEPS
+                        # ---------------------------------------------------
 
                         st.markdown(
-                            f"**{number}.** {step}"
+                            "**Steps:**"
                         )
 
-                    # --------------------------------------------------------
-                    # YOUTUBE
-                    # --------------------------------------------------------
 
-                    st.markdown(
-                        "**📺 Cooking tutorials**"
-                    )
+                        for i, step in enumerate(
+                            recipe.get(
+                                "steps",
+                                [],
+                            ),
+                            start=1,
+                        ):
 
-                    try:
+                            st.markdown(
+                                f"{i}. {step}"
+                            )
 
-                        videos = search_youtube_videos(
-                            recipe_name
+
+                        # ===================================================
+                        # NODE 3 — YOUTUBE
+                        # ===================================================
+
+                        st.markdown(
+                            "**📺 Watch on YouTube:**"
                         )
 
-                        if videos:
 
-                            for video in videos:
+                        try:
 
-                                title = video.get(
-                                    "title",
-                                    "Watch tutorial",
-                                )
+                            yt_videos = search_youtube_videos(
+                                recipe_name
+                            )
 
-                                url = video.get(
-                                    "url",
-                                    "",
-                                )
 
-                                if url:
+                            if yt_videos:
 
-                                    # Clickable YouTube title
+                                for video in yt_videos:
+
+                                    title = video.get(
+                                        "title",
+                                        "Watch recipe tutorial",
+                                    )
+
+                                    url = video.get(
+                                        "url",
+                                        "",
+                                    )
+
+
+                                    if not url:
+
+                                        continue
+
+
                                     st.markdown(
                                         f"""
                                         <div class="youtube-card">
-
-                                            <span style="
-                                                font-size:18px;
-                                                margin-right:6px;
-                                            ">
-                                                ▶️
-                                            </span>
-
-                                            <a
-                                                href="{url}"
-                                                target="_blank"
-                                                class="youtube-link"
-                                            >
+                                            ▶️
+                                            <a href="{url}"
+                                               target="_blank"
+                                               class="youtube-link">
                                                 {title}
                                             </a>
-
-                                            <div style="
-                                                font-size:12px;
-                                                color:#777;
-                                                margin-top:5px;
-                                                margin-left:29px;
-                                            ">
-                                                Watch on YouTube ↗
-                                            </div>
-
                                         </div>
                                         """,
                                         unsafe_allow_html=True,
                                     )
 
-                        else:
 
-                            st.info(
-                                "No YouTube tutorials found."
+                            else:
+
+                                st.info(
+                                    "No YouTube tutorials found."
+                                )
+
+
+                        except Exception as e:
+
+                            st.warning(
+                                f"YouTube search failed: {e}"
                             )
 
-                    except Exception as e:
 
-                        st.warning(
-                            f"YouTube search failed: {e}"
+                        st.markdown(
+                            "</div>",
+                            unsafe_allow_html=True,
                         )
 
-                    st.markdown(
-                        "</div>",
-                        unsafe_allow_html=True,
+
+                    # =======================================================
+                    # SHOPPING LIST
+                    # =======================================================
+
+                    shopping_list = build_shopping_list(
+                        recipes
                     )
 
 
-                # ============================================================
-                # SHOPPING LIST
-                # ============================================================
+                    if shopping_list:
 
-                shopping_list = build_shopping_list(
-                    recipes
-                )
-
-                if shopping_list:
-
-                    st.markdown(
-                        '<div class="sb-card">',
-                        unsafe_allow_html=True,
-                    )
-
-                    st.markdown(
-                        "### 🛒 Shopping List"
-                    )
-
-                    for item in shopping_list:
-
-                        st.write(
-                            f"☐ {item}"
+                        st.markdown(
+                            '<div class="sb-card">',
+                            unsafe_allow_html=True,
                         )
 
-                    st.markdown(
-                        "</div>",
-                        unsafe_allow_html=True,
-                    )
+
+                        st.markdown(
+                            "#### 🛒 Combined Shopping List"
+                        )
 
 
-                # ============================================================
-                # TAVILY
-                # ============================================================
+                        for item in shopping_list:
+
+                            st.write(
+                                f"- {item}"
+                            )
+
+
+                        st.markdown(
+                            "</div>",
+                            unsafe_allow_html=True,
+                        )
+
+
+                # ===========================================================
+                # NODE 4 — TAVILY
+                # ===========================================================
 
                 if use_web_search:
 
@@ -762,27 +835,32 @@ if page == "🏠 Home":
                         unsafe_allow_html=True,
                     )
 
+
                     st.markdown(
-                        "### 🔗 More Recipes From The Web"
+                        "#### 🔗 More recipe ideas from the web"
                     )
 
+
                     st.caption(
-                        "Real-time results powered by Tavily"
+                        "Powered by Tavily real-time web search"
                     )
+
 
                     if not TAVILY_READY:
 
                         st.warning(
-                            "Tavily API key is missing. "
-                            "Add TAVILY_API_KEY to your .env file."
+                            "Tavily API key isn't set in your "
+                            ".env file. Add TAVILY_API_KEY "
+                            "and restart the app."
                         )
+
 
                     else:
 
                         try:
 
                             with st.spinner(
-                                "🌐 Searching the web..."
+                                "🌐 Finding recipes on the web..."
                             ):
 
                                 links = search_recipes(
@@ -790,13 +868,14 @@ if page == "🏠 Home":
                                     ingredients,
                                 )
 
+
                             if links:
 
                                 for link in links:
 
                                     title = link.get(
                                         "title",
-                                        "Recipe",
+                                        "Recipe website",
                                     )
 
                                     url = link.get(
@@ -804,32 +883,34 @@ if page == "🏠 Home":
                                         "",
                                     )
 
-                                    if url:
 
-                                        st.markdown(
-                                            f"""
-                                            <div class="web-card">
+                                    if not url:
 
-                                                🔗
+                                        continue
 
-                                                <a
-                                                    href="{url}"
-                                                    target="_blank"
-                                                    class="web-link"
-                                                >
-                                                    {title}
-                                                </a>
 
-                                            </div>
-                                            """,
-                                            unsafe_allow_html=True,
-                                        )
+                                    st.markdown(
+                                        f"""
+                                        <div class="web-card">
+                                            🔗
+                                            <a href="{url}"
+                                               target="_blank"
+                                               class="web-link">
+                                                {title}
+                                            </a>
+                                        </div>
+                                        """,
+                                        unsafe_allow_html=True,
+                                    )
+
 
                             else:
 
-                                st.info(
-                                    "No web recipes found."
+                                st.write(
+                                    "No web results found "
+                                    "for this search."
                                 )
+
 
                         except Exception as e:
 
@@ -837,52 +918,46 @@ if page == "🏠 Home":
                                 f"Tavily search failed: {e}"
                             )
 
+
                     st.markdown(
                         "</div>",
                         unsafe_allow_html=True,
                     )
 
 
-# ============================================================================
-# DISCOVER
-# ============================================================================
+# ===========================================================================
+# DISCOVER PAGE
+# ===========================================================================
 
 elif page == "🧭 Discover":
 
     st.markdown(
-        "## 🔥 Discover Recipes"
+        "## 🔥 Popular Recipes"
     )
 
     st.caption(
-        "Enter your ingredients to find the best matching recipes."
+        "Find recipes based on the ingredients you have."
     )
 
-    # ------------------------------------------------------------------------
-    # USER INGREDIENTS
-    # ------------------------------------------------------------------------
 
     discover_ingredients = st.text_input(
-        "What ingredients do you have?",
-        placeholder="e.g. rice, egg, onion, tomato",
+        "Have some ingredients? Type them to see your match % (optional)",
+        placeholder="e.g. rice, egg, onion",
         key="discover_ingredients",
     )
 
-    if discover_ingredients.strip():
 
-        user_ings = _parse_user_ingredients(
+    user_ings = (
+        _parse_user_ingredients(
             discover_ingredients
         )
+        if discover_ingredients.strip()
+        else []
+    )
 
-    else:
-
-        user_ings = []
-
-
-    # ------------------------------------------------------------------------
-    # SCORE RECIPES
-    # ------------------------------------------------------------------------
 
     scored_recipes = []
+
 
     for recipe in LOCAL_RECIPES:
 
@@ -895,14 +970,13 @@ elif page == "🧭 Discover":
 
         else:
 
-            score = 0
-
+            score = 0.0
             matched = []
-
             missing = recipe.get(
                 "ingredients",
                 [],
             )
+
 
         scored_recipes.append(
             (
@@ -920,216 +994,159 @@ elif page == "🧭 Discover":
     )
 
 
-    # ------------------------------------------------------------------------
-    # FAVORITES
-    # ------------------------------------------------------------------------
-
     if "favorites" not in st.session_state:
 
         st.session_state.favorites = set()
 
 
-    # ------------------------------------------------------------------------
-    # RECIPE CARDS
-    # ------------------------------------------------------------------------
+    cols_per_row = 3
+
 
     for i in range(
         0,
         len(scored_recipes),
-        3,
+        cols_per_row,
     ):
 
         row = scored_recipes[
-            i:i + 3
+            i:i + cols_per_row
         ]
 
-        columns = st.columns(3)
+        cols = st.columns(
+            cols_per_row
+        )
 
-        for column, (
+
+        for col, (
             score,
             recipe,
             matched,
             missing,
-        ) in zip(
-            columns,
-            row,
-        ):
+        ) in zip(cols, row):
 
-            with column:
+            with col:
 
-                # ==========================================================
-                # IMAGE
-                # ==========================================================
+                st.markdown(
+                    '<div class="sb-card" '
+                    'style="padding:0;overflow:hidden;">',
+                    unsafe_allow_html=True,
+                )
 
-                image_url = recipe.get(
+
+                img_url = recipe.get(
                     "image_url",
                     "",
                 )
 
-                if image_url:
+
+                if img_url:
 
                     st.image(
-                        image_url,
+                        img_url,
                         use_container_width=True,
                     )
 
-                # ==========================================================
-                # MATCH + TIME
-                # ==========================================================
 
-                badge1, badge2 = st.columns(2)
+                st.markdown(
+                    f"""
+                    <div style="padding:14px 16px 4px 16px;">
 
-                with badge1:
-
-                    st.markdown(
-                        f"""
-                        <div style="
-                            display:inline-block;
-                            background:#ecfdf5;
-                            color:#059669;
-                            border:1px solid #a7f3d0;
-                            border-radius:20px;
-                            padding:4px 10px;
-                            font-size:12px;
-                            font-weight:600;
-                            white-space:nowrap;
-                        ">
+                        <span class="sb-pill-green"
+                              style="padding:3px 10px;font-size:12px;">
                             ⭐ {int(score * 100)}% match
-                        </div>
-                        """,
-                        unsafe_allow_html=True,
-                    )
+                        </span>
 
-                with badge2:
-
-                    st.markdown(
-                        f"""
-                        <div style="
-                            display:inline-block;
-                            background:#f9fafb;
-                            color:#6b7280;
-                            border:1px solid #e5e7eb;
-                            border-radius:20px;
-                            padding:4px 10px;
-                            font-size:12px;
-                            font-weight:600;
-                            white-space:nowrap;
-                        ">
+                        <span class="sb-pill-gray"
+                              style="padding:3px 10px;font-size:12px;">
                             ⏱ {recipe.get("cooking_time", "?")} min
-                        </div>
-                        """,
-                        unsafe_allow_html=True,
-                    )
+                        </span>
 
-
-                # ==========================================================
-                # NAME
-                # ==========================================================
-
-                st.markdown(
-                    f"### {recipe.get('name', 'Recipe')}"
+                    </div>
+                    """,
+                    unsafe_allow_html=True,
                 )
 
 
-                # ==========================================================
-                # INFO
-                # ==========================================================
-
                 st.markdown(
-                    f"🌍 **{recipe.get('cuisine', '—')}**  "
-                    f"👥 **{recipe.get('servings', '?')} serv**  "
-                    f"⚡ **{recipe.get('difficulty', '—')}**"
+                    f"**{recipe.get('name', 'Recipe')}**"
                 )
 
 
-                # ==========================================================
-                # DESCRIPTION
-                # ==========================================================
+                st.markdown(
+                    f"""
+                    <span class="sb-pill-blue"
+                          style="padding:2px 8px;font-size:11px;">
+                        🌍 {recipe.get("cuisine", "—")}
+                    </span>
 
-                description = recipe.get(
+                    <span class="sb-pill-gray"
+                          style="padding:2px 8px;font-size:11px;">
+                        👥 {recipe.get("servings", "?")} serv
+                    </span>
+
+                    <span class="sb-pill-gray"
+                          style="padding:2px 8px;font-size:11px;">
+                        ⚡ {recipe.get("difficulty", "—")}
+                    </span>
+                    """,
+                    unsafe_allow_html=True,
+                )
+
+
+                desc = recipe.get(
                     "description",
                     "",
                 )
 
-                if len(description) > 100:
-
-                    description = (
-                        description[:100]
-                        + "..."
-                    )
 
                 st.caption(
-                    description
+                    desc[:90]
+                    + (
+                        "..."
+                        if len(desc) > 90
+                        else ""
+                    )
                 )
 
 
-                # ==========================================================
-                # INGREDIENT MATCH
-                # ==========================================================
-
-                total = len(
+                total_ings = len(
                     recipe.get(
                         "ingredients",
                         [],
                     )
                 )
 
-                matched_count = len(
-                    matched
+
+                have = len(matched)
+                need = len(missing)
+
+
+                st.markdown(
+                    f"""
+                    <span style="color:#059669;
+                                 font-size:12px;
+                                 font-weight:600;">
+                        ✓ You have {have}/{total_ings} ingredients
+                    </span>
+
+                    &nbsp;&nbsp;
+
+                    <span style="color:#b45309;
+                                 font-size:12px;
+                                 font-weight:600;">
+                        ⚠ {need} missing
+                    </span>
+                    """,
+                    unsafe_allow_html=True,
                 )
 
-                missing_count = len(
-                    missing
-                )
 
-
-                if user_ings:
-
-                    st.markdown(
-                        f"""
-                        <div style="
-                            font-size:13px;
-                            margin:8px 0;
-                        ">
-
-                            <span style="
-                                color:#059669;
-                                font-weight:600;
-                            ">
-                                ✓ You have {matched_count}/{total} ingredients
-                            </span>
-
-                            <br>
-
-                            <span style="
-                                color:#b45309;
-                                font-weight:600;
-                            ">
-                                ⚠ {missing_count} missing
-                            </span>
-
-                        </div>
-                        """,
-                        unsafe_allow_html=True,
-                    )
-
-                else:
-
-                    st.caption(
-                        f"{total} ingredients required"
-                    )
-
-
-                # ==========================================================
-                # BUTTONS
-                # ==========================================================
-
-                button1, button2 = st.columns(
+                btn_col1, btn_col2 = st.columns(
                     [4, 1]
                 )
 
 
-                with button1:
+                with btn_col1:
 
                     view_clicked = st.button(
                         "View Recipe →",
@@ -1138,24 +1155,23 @@ elif page == "🧭 Discover":
                     )
 
 
-                with button2:
+                with btn_col2:
 
-                    is_favorite = (
+                    is_fav = (
                         recipe["id"]
                         in st.session_state.favorites
                     )
 
-                    favorite_clicked = st.button(
-                        "♥" if is_favorite else "♡",
+
+                    if st.button(
+                        "♥" if is_fav else "♡",
                         key=f"fav_{recipe['id']}",
                         use_container_width=True,
-                    )
+                    ):
 
-                    if favorite_clicked:
+                        if is_fav:
 
-                        if is_favorite:
-
-                            st.session_state.favorites.remove(
+                            st.session_state.favorites.discard(
                                 recipe["id"]
                             )
 
@@ -1165,39 +1181,38 @@ elif page == "🧭 Discover":
                                 recipe["id"]
                             )
 
+
                         st.rerun()
 
 
-                # ==========================================================
-                # VIEW RECIPE
-                # ==========================================================
+                # -----------------------------------------------------------
+                # FULL RECIPE
+                # -----------------------------------------------------------
 
                 if view_clicked:
 
                     with st.expander(
-                        "📖 Recipe Details",
+                        "Full recipe",
                         expanded=True,
                     ):
 
                         st.markdown(
-                            "### Ingredients"
-                        )
-
-                        for ingredient in recipe.get(
-                            "ingredients",
-                            [],
-                        ):
-
-                            st.write(
-                                f"• {ingredient}"
+                            "**Ingredients:** "
+                            + ", ".join(
+                                recipe.get(
+                                    "ingredients",
+                                    [],
+                                )
                             )
+                        )
 
 
                         st.markdown(
-                            "### Cooking Steps"
+                            "**Steps:**"
                         )
 
-                        for number, step in enumerate(
+
+                        for j, step in enumerate(
                             recipe.get(
                                 "steps",
                                 [],
@@ -1206,46 +1221,48 @@ elif page == "🧭 Discover":
                         ):
 
                             st.markdown(
-                                f"**{number}.** {step}"
+                                f"{j}. {step}"
                             )
 
 
                         tips = recipe.get(
-                            "tips",
-                            "",
+                            "tips"
                         )
+
 
                         if tips:
 
-                            st.info(
-                                f"💡 {tips}"
+                            st.markdown(
+                                f"**Tip:** {tips}"
                             )
 
 
-                        # --------------------------------------------------
+                        # ---------------------------------------------------
                         # YOUTUBE
-                        # --------------------------------------------------
+                        # ---------------------------------------------------
 
                         st.markdown(
-                            "### 📺 Cooking Tutorials"
+                            "**📺 Watch on YouTube:**"
                         )
+
 
                         try:
 
-                            videos = search_youtube_videos(
+                            yt_videos = search_youtube_videos(
                                 recipe.get(
                                     "name",
                                     "",
                                 )
                             )
 
-                            if videos:
 
-                                for video in videos:
+                            if yt_videos:
+
+                                for video in yt_videos:
 
                                     title = video.get(
                                         "title",
-                                        "Watch tutorial",
+                                        "Watch recipe tutorial",
                                     )
 
                                     url = video.get(
@@ -1253,40 +1270,26 @@ elif page == "🧭 Discover":
                                         "",
                                     )
 
-                                    if url:
 
-                                        st.markdown(
-                                            f"""
-                                            <div class="youtube-card">
+                                    if not url:
 
-                                                <span style="
-                                                    font-size:18px;
-                                                    margin-right:6px;
-                                                ">
-                                                    ▶️
-                                                </span>
+                                        continue
 
-                                                <a
-                                                    href="{url}"
-                                                    target="_blank"
-                                                    class="youtube-link"
-                                                >
-                                                    {title}
-                                                </a>
 
-                                                <div style="
-                                                    font-size:12px;
-                                                    color:#777;
-                                                    margin-top:5px;
-                                                    margin-left:29px;
-                                                ">
-                                                    Watch on YouTube ↗
-                                                </div>
+                                    st.markdown(
+                                        f"""
+                                        <div class="youtube-card">
+                                            ▶️
+                                            <a href="{url}"
+                                               target="_blank"
+                                               class="youtube-link">
+                                                {title}
+                                            </a>
+                                        </div>
+                                        """,
+                                        unsafe_allow_html=True,
+                                    )
 
-                                            </div>
-                                            """,
-                                            unsafe_allow_html=True,
-                                        )
 
                             else:
 
@@ -1294,116 +1297,166 @@ elif page == "🧭 Discover":
                                     "No YouTube tutorials found."
                                 )
 
+
                         except Exception as e:
 
                             st.warning(
                                 f"YouTube search failed: {e}"
                             )
 
-                st.markdown("---")
+
+                st.markdown(
+                    "</div>",
+                    unsafe_allow_html=True,
+                )
 
 
-# ============================================================================
+# ===========================================================================
 # MY RECIPES
-# ============================================================================
+# ===========================================================================
 
 elif page == "📖 My Recipes":
 
     st.markdown(
-        "## 📖 My Recipes"
+        '<div class="sb-card">',
+        unsafe_allow_html=True,
     )
 
-    st.info(
-        "Saved recipes will appear here. Coming soon."
+    st.markdown(
+        "### 📖 My Recipes"
+    )
+
+    st.write(
+        "Recipes you've saved will show up here. "
+        "(Coming soon.)"
+    )
+
+    st.markdown(
+        "</div>",
+        unsafe_allow_html=True,
     )
 
 
-# ============================================================================
+# ===========================================================================
 # SHOPPING LIST
-# ============================================================================
+# ===========================================================================
 
 elif page == "🛒 Shopping List":
 
     st.markdown(
-        "## 🛒 Shopping List"
+        '<div class="sb-card">',
+        unsafe_allow_html=True,
     )
 
-    st.info(
-        "Your shopping list will appear here. Coming soon."
+    st.markdown(
+        "### 🛒 Shopping List"
+    )
+
+    st.write(
+        "Your combined shopping list across saved recipes. "
+        "(Coming soon.)"
+    )
+
+    st.markdown(
+        "</div>",
+        unsafe_allow_html=True,
     )
 
 
-# ============================================================================
+# ===========================================================================
 # ASK SMARTBITE AI
-# ============================================================================
+# ===========================================================================
 
 elif page == "💬 Ask SmartBite AI":
 
     st.markdown(
-        "## 💬 Ask SmartBite AI"
+        '<div class="sb-card">',
+        unsafe_allow_html=True,
     )
 
-    st.info(
-        "AI cooking chat will be available here. Coming soon."
+    st.markdown(
+        "### 💬 Ask SmartBite AI"
+    )
+
+    st.write(
+        "Free-form chat with the AI about cooking. "
+        "(Coming soon.)"
+    )
+
+    st.markdown(
+        "</div>",
+        unsafe_allow_html=True,
     )
 
 
-# ============================================================================
+# ===========================================================================
 # ABOUT
-# ============================================================================
+# ===========================================================================
 
 elif page == "ℹ️ About":
 
     st.markdown(
-        "## ℹ️ About SmartBite AI"
+        '<div class="sb-card">',
+        unsafe_allow_html=True,
+    )
+
+    st.markdown(
+        "### ℹ️ About SmartBite AI"
     )
 
     st.write(
+        "SmartBite AI turns the ingredients you have into "
+        "meal ideas using a local recipe dataset, Gemini "
+        "for AI-generated suggestions, and Tavily for "
+        "real-time web recipe discovery."
+    )
+
+
+    st.markdown(
+        "### 🔄 How SmartBite AI Works"
+    )
+
+
+    st.markdown(
         """
-        SmartBite AI is an AI-powered recipe assistant
-        that helps users turn available ingredients into
-        useful meal ideas.
+        **User Input**
+        
+        ↓
+        
+        **Ingredient & Preference Analysis**
+        
+        ↓
+        
+        **Local Recipe Data + Gemini AI**
+        
+        ↓
+        
+        **🔍 Verify Node**
+        
+        ↓
+        
+        **Verified Recipes**
+        
+        ↓
+        
+        **Tavily Real-Time Web Search**
+        
+        ↓
+        
+        **YouTube Cooking Tutorials**
+        
+        ↓
+        
+        **Shopping List**
+        
+        ↓
+        
+        **Streamlit User Interface**
         """
     )
 
-    st.markdown(
-        "### 🔄 SmartBite AI Workflow"
-    )
 
     st.markdown(
-        """
-        **1. User Input**
-
-        ↓
-
-        **2. Ingredient + Preference Analysis**
-
-        ↓
-
-        **3. Local Recipe Data + Gemini AI**
-
-        ↓
-
-        **4. 🔍 Verify Node**
-
-        ↓
-
-        **5. Verified Recipes**
-
-        ↓
-
-        **6. Tavily Real-Time Web Search**
-
-        ↓
-
-        **7. YouTube Cooking Tutorials**
-
-        ↓
-
-        **8. Shopping List**
-
-        ↓
-
-        **9. Streamlit User Interface**
-        """
+        "</div>",
+        unsafe_allow_html=True,
     )
