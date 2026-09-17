@@ -1,3 +1,5 @@
+import base64
+
 import streamlit as st
 from dotenv import load_dotenv
 
@@ -32,6 +34,23 @@ st.set_page_config(
     page_icon="🥗",
     layout="wide",
 )
+
+
+# ===========================================================================
+# IMAGE HELPER (for embedding local images in HTML)
+# ===========================================================================
+
+def load_image_base64(path):
+    """Read a local image file and return it as a base64 string
+    so it can be embedded directly inside an HTML <img> tag."""
+    with open(path, "rb") as f:
+        return base64.b64encode(f.read()).decode()
+
+
+try:
+    chef_img = load_image_base64("chef.png")
+except FileNotFoundError:
+    chef_img = None
 
 
 # ===========================================================================
@@ -268,6 +287,38 @@ st.markdown(
         margin-bottom: 20px;
     }
 
+    .sb-hero-dark {
+        background: linear-gradient(135deg, #0f0f14 0%, #1a1410 100%);
+        border-radius: 20px;
+        padding: 48px 56px;
+        margin-bottom: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        overflow: hidden;
+    }
+
+    .sb-hero-badge {
+        display: inline-block;
+        background: rgba(217, 119, 6, 0.15);
+        color: #f59e0b;
+        border: 1px solid rgba(245, 158, 11, 0.4);
+        border-radius: 20px;
+        padding: 6px 16px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        margin-bottom: 18px;
+    }
+
+    .sb-hero-title {
+        color: white;
+        font-size: 48px;
+        font-weight: 800;
+        line-height: 1.1;
+        margin: 0;
+    }
+
     .sb-pill-green {
         display: inline-block;
         background: #ecfdf5;
@@ -348,6 +399,40 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
+
+
+# ===========================================================================
+# TOP HERO BANNER (dark, with chef image)
+# ===========================================================================
+
+if chef_img:
+
+    st.markdown(
+        f"""
+        <div class="sb-hero-dark">
+            <div>
+                <span class="sb-hero-badge">✨ YOUR AI KITCHEN COMPANION</span>
+                <p class="sb-hero-title">SmartBite AI</p>
+            </div>
+            <img src="data:image/png;base64,{chef_img}" style="width:200px;">
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+else:
+
+    st.markdown(
+        """
+        <div class="sb-hero-dark">
+            <div>
+                <span class="sb-hero-badge">✨ YOUR AI KITCHEN COMPANION</span>
+                <p class="sb-hero-title">SmartBite AI</p>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
 
 # ===========================================================================
