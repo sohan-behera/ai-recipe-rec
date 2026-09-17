@@ -9,6 +9,7 @@ Recipe lookup strategy:
 
 import os
 import json
+import streamlit as st
 import google.generativeai as genai
 from tavily import TavilyClient
 from dotenv import load_dotenv
@@ -43,6 +44,7 @@ tavily_client = TavilyClient(api_key=TAVILY_API_KEY) if TAVILY_API_KEY else None
 RECIPES_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "recipes.json")
 
 
+@st.cache_data(show_spinner=False)
 def load_local_recipes() -> list:
     """Load the local recipes.json dataset. Returns [] if missing or invalid."""
     try:
@@ -219,6 +221,7 @@ def build_shopping_list(recipes: list) -> list:
     return shopping_list
 
 
+@st.cache_data(show_spinner=False, ttl=3600)
 def search_recipes(cuisine: str, ingredients: str, max_results: int = 3) -> list:
     """Optional: use Tavily to find public recipe links as extra source references."""
     if not tavily_client:
@@ -236,6 +239,7 @@ def search_recipes(cuisine: str, ingredients: str, max_results: int = 3) -> list
         return []
 
 
+@st.cache_data(show_spinner=False, ttl=3600)
 def search_youtube_videos(recipe_name: str, max_results: int = 2) -> list:
     """Use Tavily, restricted to youtube.com, to find video tutorials for a recipe."""
     if not tavily_client or not recipe_name:
