@@ -1,16 +1,20 @@
 """
 Core logic for the AI Recipe & Meal Recommendation Assistant.
-Keeps Gemini + Tavily calls separate from the Streamlit UI.
+Keeps Gemini + Groq + Tavily calls separate from the Streamlit UI.
 
 Recipe lookup strategy:
 1. Try to match against the local recipes.json dataset first (fast, free, always accurate).
-2. If nothing in the local dataset matches well enough, fall back to asking Gemini.
+2. If nothing in the local dataset matches well enough, ask Gemini.
+3. If Gemini fails (e.g. quota exceeded), fall back to Groq.
+4. If both AI providers fail, fall back again to a relaxed local search
+   instead of showing a raw API error to the user.
 """
 
 import os
 import json
 import streamlit as st
 import google.generativeai as genai
+from groq import Groq
 from tavily import TavilyClient
 from dotenv import load_dotenv
 
@@ -29,10 +33,13 @@ def _get_secret(key: str) -> str:
 
 
 GEMINI_API_KEY = _get_secret("GEMINI_API_KEY")
+GROQ_API_KEY = _get_secret("GROQ_API_KEY")
 TAVILY_API_KEY = _get_secret("TAVILY_API_KEY")
 
 genai.configure(api_key=GEMINI_API_KEY)
 model = genai.GenerativeModel("gemini-3.6-flash")
+
+groq_client = Groq(api_key=GROQ_API_KEY) if GROQ_API_KEY else None
 
 tavily_client = TavilyClient(api_key=TAVILY_API_KEY) if TAVILY_API_KEY else None
 
@@ -94,7 +101,7 @@ def _passes_filters(recipe: dict, cuisine: str, diet: str, time_minutes: int) ->
 
 
 def _format_local_recipe(recipe: dict, matched: list, missing: list) -> dict:
-    """Convert a local dataset recipe into the same schema the UI expects from Gemini."""
+    """Convert a local dataset recipe into the same schema the UI expects from Gemini/Groq."""
     return {
         "recipe_name": recipe.get("name", "Recipe"),
         "estimated_time_minutes": recipe.get("cooking_time", "?"),
@@ -124,7 +131,7 @@ def search_local_recipes(ingredients: str, cuisine: str, time_minutes: int, diet
 
 
 # ---------------------------------------------------------------------------
-# Gemini fallback
+# Shared prompt used by BOTH Gemini and Groq, so the output schema matches
 # ---------------------------------------------------------------------------
 
 SYSTEM_PROMPT = """You are a helpful, practical recipe assistant for students with limited cooking experience.
@@ -164,8 +171,23 @@ Return ONLY valid JSON (no markdown, no commentary) matching this schema:
 """
 
 
+def _clean_json_text(raw_text: str) -> str:
+    """Strip markdown code fences some models add despite instructions not to."""
+    raw_text = raw_text.strip()
+    if raw_text.startswith("```"):
+        raw_text = raw_text.strip("`")
+        if raw_text.lower().startswith("json"):
+            raw_text = raw_text[4:].strip()
+    return raw_text
+
+
+# ---------------------------------------------------------------------------
+# Gemini provider
+# ---------------------------------------------------------------------------
+
 def _generate_recipe_gemini(ingredients: str, cuisine: str, time_minutes: int, servings: int, diet: str) -> dict:
-    """Call Gemini to generate recipe suggestions. Returns a parsed dict."""
+    """Call Gemini to generate recipe suggestions. Raises on failure so the
+    caller can fall back to the next provider."""
     prompt = SYSTEM_PROMPT.format(
         ingredients=ingredients,
         cuisine=cuisine,
@@ -175,20 +197,47 @@ def _generate_recipe_gemini(ingredients: str, cuisine: str, time_minutes: int, s
     )
 
     response = model.generate_content(prompt)
-    raw_text = response.text.strip()
-
-    # Gemini sometimes wraps JSON in markdown fences despite instructions - strip them defensively.
-    if raw_text.startswith("```"):
-        raw_text = raw_text.strip("`")
-        if raw_text.lower().startswith("json"):
-            raw_text = raw_text[4:].strip()
+    raw_text = _clean_json_text(response.text)
 
     try:
-        data = json.loads(raw_text)
+        return json.loads(raw_text)
     except json.JSONDecodeError:
         return {"recipes": [], "note": "Sorry, I couldn't parse a recipe this time. Please try again."}
 
-    return data
+
+# ---------------------------------------------------------------------------
+# Groq provider (backup AI, OpenAI-compatible chat completion API)
+# ---------------------------------------------------------------------------
+
+def _generate_recipe_groq(ingredients: str, cuisine: str, time_minutes: int, servings: int, diet: str) -> dict:
+    """Call Groq (Llama 3.3 70B) to generate recipe suggestions. Raises on
+    failure so the caller can fall back to the local dataset."""
+    if not groq_client:
+        raise RuntimeError("Groq API key is not configured.")
+
+    prompt = SYSTEM_PROMPT.format(
+        ingredients=ingredients,
+        cuisine=cuisine,
+        time=time_minutes,
+        servings=servings,
+        diet=diet,
+    )
+
+    completion = groq_client.chat.completions.create(
+        model="llama-3.3-70b-versatile",
+        messages=[
+            {"role": "system", "content": "You return only valid JSON, no markdown, no commentary."},
+            {"role": "user", "content": prompt},
+        ],
+        temperature=0.4,
+    )
+
+    raw_text = _clean_json_text(completion.choices[0].message.content)
+
+    try:
+        return json.loads(raw_text)
+    except json.JSONDecodeError:
+        return {"recipes": [], "note": "Sorry, I couldn't parse a recipe this time. Please try again."}
 
 
 # ---------------------------------------------------------------------------
@@ -197,8 +246,11 @@ def _generate_recipe_gemini(ingredients: str, cuisine: str, time_minutes: int, s
 
 def generate_recipe(ingredients: str, cuisine: str, time_minutes: int, servings: int, diet: str) -> dict:
     """
-    Try the local recipe dataset first. If it doesn't have a good enough match,
-    fall back to Gemini for AI-generated suggestions.
+    Try the local recipe dataset first. If it doesn't have a good enough match:
+        1. Try Gemini.
+        2. If Gemini fails (quota, network, etc.), try Groq.
+        3. If both AI providers fail, fall back to a relaxed local search
+           instead of surfacing a raw API error to the user.
     """
     local_matches = search_local_recipes(ingredients, cuisine, time_minutes, diet)
 
@@ -208,7 +260,46 @@ def generate_recipe(ingredients: str, cuisine: str, time_minutes: int, servings:
             "note": "Matched from our curated recipe collection.",
         }
 
-    return _generate_recipe_gemini(ingredients, cuisine, time_minutes, servings, diet)
+    gemini_error = None
+    groq_error = None
+
+    try:
+        return _generate_recipe_gemini(ingredients, cuisine, time_minutes, servings, diet)
+    except Exception as e:
+        gemini_error = e
+
+    try:
+        return _generate_recipe_groq(ingredients, cuisine, time_minutes, servings, diet)
+    except Exception as e:
+        groq_error = e
+
+    # Both AI providers failed - relax the local match threshold and try again
+    # so the user still sees something useful instead of a dead end.
+    relaxed_matches = search_local_recipes(
+        ingredients, cuisine, time_minutes, diet,
+        min_score=0.15,
+    )
+
+    if relaxed_matches:
+        return {
+            "recipes": relaxed_matches,
+            "note": (
+                "Our AI assistant is temporarily unavailable, so here are the "
+                "closest matches from our recipe collection instead."
+            ),
+        }
+
+    print(f"GEMINI ERROR: {gemini_error}")
+    print(f"GROQ ERROR: {groq_error}")
+
+    return {
+        "recipes": [],
+        "note": (
+            "Our AI assistant is temporarily unavailable and no close matches "
+            "were found in our recipe collection. Please try again in a few minutes "
+            "or adjust your ingredients."
+        ),
+    }
 
 
 def build_shopping_list(recipes: list) -> list:
@@ -260,4 +351,3 @@ def search_youtube_videos(recipe_name: str, max_results: int = 2) -> list:
     except Exception as e:
         print(f"TAVILY YOUTUBE DEBUG ERROR: {e}")
         return []
-    
