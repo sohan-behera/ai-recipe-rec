@@ -72,6 +72,63 @@ def _parse_user_ingredients(ingredients: str) -> list:
     return [_normalize(i) for i in ingredients.split(",") if i.strip()]
 
 
+# ---------------------------------------------------------------------------
+# Diet-based ingredient filtering
+# ---------------------------------------------------------------------------
+# Same word lists used by the Verify Node in app.py, kept here so the
+# ingredients themselves can be cleaned up *before* they're searched/sent
+# to the AI, instead of only being checked after the fact.
+
+NON_VEG_WORDS = [
+    "chicken", "mutton", "beef", "pork", "fish", "meat", "shrimp", "prawn",
+]
+
+NON_VEGAN_WORDS = NON_VEG_WORDS + [
+    "egg", "milk", "cheese", "butter", "cream", "yogurt", "curd",
+]
+
+GLUTEN_WORDS = [
+    "wheat", "maida", "flour", "bread", "pasta", "barley", "rye",
+]
+
+
+def filter_ingredients_by_diet(user_ings: list, diet: str) -> tuple:
+    """
+    Remove ingredients that don't fit the selected dietary preference.
+
+    Returns (allowed_ingredients, excluded_ingredients), where excluded_ingredients
+    is a list of (ingredient, reason_label) tuples so the user can be told
+    exactly why each item was removed (e.g. "egg" -> "non-vegetarian item").
+
+    Matching is substring-based (e.g. "eggs" or "egg white" both match "egg")
+    so it catches common variations without needing an exact word list.
+    """
+    diet = (diet or "").lower()
+
+    if diet == "vegetarian":
+        banned_words = NON_VEG_WORDS
+        reason_label = "non-vegetarian item"
+    elif diet == "vegan":
+        banned_words = NON_VEGAN_WORDS
+        reason_label = "non-vegan item"
+    elif diet == "gluten-free":
+        banned_words = GLUTEN_WORDS
+        reason_label = "gluten-containing item"
+    else:
+        return user_ings, []
+
+    allowed = []
+    excluded = []
+
+    for ing in user_ings:
+        if any(word in ing for word in banned_words):
+            excluded.append((ing, reason_label))
+        else:
+            allowed.append(ing)
+
+    return allowed, excluded
+
+
 def _score_recipe(user_ings: list, recipe: dict) -> tuple:
     """Return (score 0-1, matched_ingredients, missing_ingredients) for a recipe."""
     recipe_ings = [_normalize(i) for i in recipe.get("ingredients", [])]
@@ -251,32 +308,66 @@ def generate_recipe(ingredients: str, cuisine: str, time_minutes: int, servings:
         2. If Gemini fails (quota, network, etc.), try Groq.
         3. If both AI providers fail, fall back to a relaxed local search
            instead of surfacing a raw API error to the user.
+
+    Before any of that, ingredients that conflict with the selected diet
+    (e.g. "egg" under Vegan) are filtered out automatically, so the search/AI
+    call only ever sees ingredients that are actually usable - instead of
+    trying (and failing) to force a compliant recipe out of a non-compliant
+    ingredient list.
     """
-    local_matches = search_local_recipes(ingredients, cuisine, time_minutes, diet)
+    user_ings_raw = _parse_user_ingredients(ingredients)
+    allowed_ings, excluded_ings = filter_ingredients_by_diet(user_ings_raw, diet)
+
+    exclusion_note = ""
+    if excluded_ings:
+        excluded_phrases = [f"{ing} is a {reason}" for ing, reason in excluded_ings]
+        exclusion_note = (
+            f"Excluded: {', '.join(excluded_phrases)}. "
+        )
+
+    if not allowed_ings:
+        return {
+            "recipes": [],
+            "note": (
+                exclusion_note
+                + "None of your remaining ingredients work with this dietary "
+                "preference. Try adding a few more ingredients."
+            ),
+        }
+
+    # Rebuild a clean ingredients string from only the allowed ingredients,
+    # so both local search and AI generation work off the filtered list.
+    filtered_ingredients = ", ".join(allowed_ings)
+
+    local_matches = search_local_recipes(filtered_ingredients, cuisine, time_minutes, diet)
 
     if local_matches:
         return {
             "recipes": local_matches,
-            "note": "Matched from our curated recipe collection.",
+            "note": exclusion_note + "Matched from our curated recipe collection.",
         }
 
     gemini_error = None
     groq_error = None
 
     try:
-        return _generate_recipe_gemini(ingredients, cuisine, time_minutes, servings, diet)
+        result = _generate_recipe_gemini(filtered_ingredients, cuisine, time_minutes, servings, diet)
+        result["note"] = exclusion_note + result.get("note", "")
+        return result
     except Exception as e:
         gemini_error = e
 
     try:
-        return _generate_recipe_groq(ingredients, cuisine, time_minutes, servings, diet)
+        result = _generate_recipe_groq(filtered_ingredients, cuisine, time_minutes, servings, diet)
+        result["note"] = exclusion_note + result.get("note", "")
+        return result
     except Exception as e:
         groq_error = e
 
     # Both AI providers failed - relax the local match threshold and try again
     # so the user still sees something useful instead of a dead end.
     relaxed_matches = search_local_recipes(
-        ingredients, cuisine, time_minutes, diet,
+        filtered_ingredients, cuisine, time_minutes, diet,
         min_score=0.15,
     )
 
@@ -284,7 +375,8 @@ def generate_recipe(ingredients: str, cuisine: str, time_minutes: int, servings:
         return {
             "recipes": relaxed_matches,
             "note": (
-                "Our AI assistant is temporarily unavailable, so here are the "
+                exclusion_note
+                + "Our AI assistant is temporarily unavailable, so here are the "
                 "closest matches from our recipe collection instead."
             ),
         }
@@ -295,7 +387,8 @@ def generate_recipe(ingredients: str, cuisine: str, time_minutes: int, servings:
     return {
         "recipes": [],
         "note": (
-            "Our AI assistant is temporarily unavailable and no close matches "
+            exclusion_note
+            + "Our AI assistant is temporarily unavailable and no close matches "
             "were found in our recipe collection. Please try again in a few minutes "
             "or adjust your ingredients."
         ),
